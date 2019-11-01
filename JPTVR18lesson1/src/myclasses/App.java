@@ -3,19 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jptvr18lesson1;
+package myclasses;
 
 /**
  *
  * @author pupil
  */
-public class JPTVR18lesson1 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("hello, world!");
+public class App {
+    public void run(){
+        
     }
-    
 }
