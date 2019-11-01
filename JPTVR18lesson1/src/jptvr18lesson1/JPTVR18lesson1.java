@@ -5,6 +5,8 @@
  */
 package jptvr18lesson1;
 
+import myclasses.App;
+
 /**
  *
  * @author pupil
@@ -15,7 +17,10 @@ public class JPTVR18lesson1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("hello, world!");
+        //System.out.println("hello, world!");
+        App app = new App();
+        app.run();
     }
+    
     
 }
