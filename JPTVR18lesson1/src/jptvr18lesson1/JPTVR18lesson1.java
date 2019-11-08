@@ -6,6 +6,7 @@
 package jptvr18lesson1;
 
 import myclasses.App;
+import myclasses.Task2;
 
 /**
  *
@@ -18,8 +19,11 @@ public class JPTVR18lesson1 {
      */
     public static void main(String[] args) {
         //System.out.println("hello, world!");
-        App app = new App();
-        app.run();
+        //App app = new App();
+        //app.run();
+        Task2 task2 = new Task2();
+        
+        
     }
     
     
