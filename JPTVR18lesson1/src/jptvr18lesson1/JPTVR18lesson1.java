@@ -8,6 +8,7 @@ package jptvr18lesson1;
 import myclasses.App;
 import myclasses.Task2;
 import myclasses.Task3;
+import myclasses.Task4;
 
 /**
  *
@@ -25,8 +26,11 @@ public class JPTVR18lesson1 {
         //Task2 task2 = new Task2();
         //task2.run();
         
-        Task3 task3 = new Task3();
-        task3.run();
+        //Task3 task3 = new Task3();
+        //task3.run();
+        
+        Task4 task4 = new Task4();
+        task4.run();
     }
     
     
