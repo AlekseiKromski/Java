@@ -1,5 +1,7 @@
 package myclasses;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 /*
@@ -28,13 +30,16 @@ public class Lesson2Array {
         System.out.println("Масимальное число = " + max);
     } 
     
-    public void array(){
+    public void array1(){
         Random r = new Random();
-        int[] numbers = new int[100];
+        Integer[] numbers = new Integer[100];
         int count = 0;
         for(int i = 0; i < numbers.length; i++){
+            numbers[i] = r.nextInt(100); 
+        }
+        Arrays.sort(numbers, Collections.reverseOrder());
+        for(int i = 0; i < numbers.length; i++){
             count++;
-            numbers[i] = r.nextInt(100);
             switch(count){
                 case 10:
                     System.out.printf("%5d\n", numbers[i]);
@@ -44,6 +49,7 @@ public class Lesson2Array {
                     System.out.printf("%5d", numbers[i]);
             }
         }
+        
         System.out.println("");
         int max = 0;
         int min = numbers[1];

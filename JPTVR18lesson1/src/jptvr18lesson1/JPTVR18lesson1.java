@@ -53,7 +53,7 @@ public class JPTVR18lesson1 {
                 task5.run();
             }else if(user == 6){
                 Lesson2Array Lesson2Array = new Lesson2Array();
-                Lesson2Array.array();
+                Lesson2Array.array1();
             }else if(user == 99){
                 break;
             }else{
