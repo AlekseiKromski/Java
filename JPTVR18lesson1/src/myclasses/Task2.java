@@ -20,11 +20,11 @@ public class Task2 {
         int edenici = number % 10; 
         int desatki = (number%100)/10;
         int sotni = (number/10)/10;
+        int answer = edenici + sotni + desatki;
         System.out.println("Сотни :" + sotni);
         System.out.println("Десятки :" + desatki);
         System.out.println("Еденицы :" + edenici);
-
-        
+        System.out.println("Сумма :" + answer);
     }
     
 }
