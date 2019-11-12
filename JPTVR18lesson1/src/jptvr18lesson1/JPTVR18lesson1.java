@@ -5,6 +5,8 @@
  */
 package jptvr18lesson1;
 
+import myclasses.Lesson2Array;
+import myclasses.Lesson2Array;
 import java.util.Scanner;
 import myclasses.App;
 import myclasses.Task2;
@@ -29,6 +31,7 @@ public class JPTVR18lesson1 {
         System.out.println("3 - Таблица умножения");
         System.out.println("4 - Год китайского календаря");
         System.out.println("5 - Казино");
+        System.out.println("6 - Lesson2Array");
         System.out.println("99 - Выход");
         do{  
             System.out.print("programm >> ");
@@ -48,6 +51,9 @@ public class JPTVR18lesson1 {
             }else if(user == 5){
                 Task5 task5 = new Task5();
                 task5.run();
+            }else if(user == 6){
+                Lesson2Array Lesson2Array = new Lesson2Array();
+                Lesson2Array.array();
             }else if(user == 99){
                 break;
             }else{
