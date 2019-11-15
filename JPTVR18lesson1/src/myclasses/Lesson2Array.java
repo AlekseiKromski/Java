@@ -7,11 +7,6 @@ import java.util.Random;
 /*
  * Урок по массивам
  */
-
-/**
- *
- * @author pupil
- */
 public class Lesson2Array {
     public void run(){
         Random r = new Random();
