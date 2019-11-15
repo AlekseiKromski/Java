@@ -18,7 +18,8 @@ public class App {
         Author author2 = new Author("Denis Sedov",2001);
         String Author = author1.getName();
         Book book1 = new Book("My book", Author, "this is my book", "1234", 2000);
-        
+
+        System.out.println(book1.getNameBook());
     }
     
 }

@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Book {
     
     private String nameBook;
-    private Author authors;
+    private String authors;
     private String desc;
     private String isbn; // издание книги 
     private int date;
@@ -24,7 +24,7 @@ public class Book {
         
     }
 
-    public Book(String nameBook, Author authors, String desc, String isbn, int date) {
+    public Book(String nameBook, String authors, String desc, String isbn, int date) {
         this.nameBook = nameBook;
         this.authors = authors;
         this.desc = desc;
@@ -32,15 +32,14 @@ public class Book {
         this.date = date;
     }
 
-    Book(String my_book, String Author, String this_is_my_book, String string, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+  
 
     public String getNameBook() {
         return nameBook;
     }
 
-    public Author getAuthors() {
+    public String getAuthors() {
         return authors;
     }
 
@@ -60,9 +59,6 @@ public class Book {
         this.nameBook = nameBook;
     }
 
-    public void setAuthors(Author authors) {
-        this.authors = authors;
-    }
 
     public void setDesc(String desc) {
         this.desc = desc;
