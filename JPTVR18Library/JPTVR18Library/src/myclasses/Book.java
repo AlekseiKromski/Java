@@ -97,6 +97,11 @@ public class Book {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" + "name=" + name + ", author=" + author + ", publisherYear=" + publisherYear + ", isbn=" + isbn + '}';
+    }
     
     
 }

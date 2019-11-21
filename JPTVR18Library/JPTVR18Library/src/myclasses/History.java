@@ -100,7 +100,7 @@ public class History {
 
     @Override
     public String toString() {
-        return "History{" + "giveOfDate=" + giveOfDate + ", returnOfDate=" + returnOfDate + ", book=" + book + ", reader=" + reader + '}';
+        return "History{" + "giveOfDate=" + giveOfDate + ", returnOfDate=" + returnOfDate + ", book=" + book.toString() + ", reader=" + reader.toString() + '}';
     }
     
     

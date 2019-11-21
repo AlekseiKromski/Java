@@ -130,6 +130,11 @@ public class Reader {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Reader{" + "Fname=" + Fname + ", Lname=" + Lname + ", day=" + day + ", mounth=" + mounth + ", year=" + year + ", number=" + number + '}';
+    }
     
     
     
