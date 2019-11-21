@@ -30,4 +30,26 @@ public class BookProvider {
         String enter = s.nextLine();
         return b;
     }
+    
+    public Reader createReader(){
+        Scanner s = new Scanner(System.in);
+        
+        //input data
+        System.out.print("Введите имя пользов.: ");
+        String fnameReader = s.nextLine();
+        System.out.print("Введите фамилия пользов.: ");
+        String lnameReader = s.nextLine();
+        System.out.print("Введите день рождения пользов.: ");
+        int dayReader = s.nextInt();
+        System.out.print("Введите месяц рождения пользов.: ");
+        int mounthReader = s.nextInt();
+        System.out.print("Введите год рождения пользов.: ");
+        int yearReader = s.nextInt();
+        System.out.print("Введите номер.телефона пользов.: ");
+        String numberReader = s.nextLine();
+        String enter = s.nextLine();
+        String enter2 = s.nextLine();
+        Reader r = new Reader(fnameReader, lnameReader,dayReader,mounthReader,yearReader,numberReader);
+        return r;
+    }
 }

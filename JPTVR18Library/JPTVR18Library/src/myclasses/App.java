@@ -39,12 +39,14 @@ public class App {
                 Book b = bp.createBook();
             }else if(userTask == 2){
                 //List book
-     
+                
             }else if(userTask == 3){
                 //Register book
-     
+                Reader r = bp.createReader();
+                System.out.println(r.toString());
             }else if(userTask == 4){
                 //Give book
+                
      
             }else if(userTask == 5){
                 // Return book
