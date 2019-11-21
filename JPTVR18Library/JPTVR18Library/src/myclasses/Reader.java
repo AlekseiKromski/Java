@@ -21,8 +21,8 @@ public class Reader {
 
     //Для вывода информации о пользователе
     public void printData(){
-        
-        System.out.println(this.Fname + " " + this.Lname + " " + this.publisherYear + " " + this.isbn);
+        String date = this.day + " " + this.mounth + " " + this.year;
+        System.out.println(this.Fname + " " + this.Lname + " " + date + " " + this.number);
     }
     
     //system methods
