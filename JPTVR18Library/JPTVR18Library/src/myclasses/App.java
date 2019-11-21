@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class App {
     public void run(){
         Scanner s = new Scanner(System.in);
+        BookProvider bp = new BookProvider();
         System.out.println("Консольная библеотека");
         /*
         Book b1 = new Book("Witcher","Sapkovsky", 2010, "1234");
@@ -31,10 +32,11 @@ public class App {
             System.out.println("3 - Зарегестрировать чит.");
             System.out.println("4 - Выдать книгу");
             System.out.println("5 - Вернуть");
+            System.out.println("99 - Стоп");
             int userTask = s.nextInt();
             if(userTask == 1){
                 //Create book
-                
+                Book b = bp.createBook();
             }else if(userTask == 2){
                 //List book
      
