@@ -22,31 +22,31 @@ public class App {
         History h1 = new History(new Date(),null,b1,r1);
         b1.printData();
         r1.printData();
-        System.out.println(h1.toString()); //with toSr
+        System.out.println(h1.toString()); //with toStr
         */
-        System.out.println("Выберите задачу");
-        System.out.print("1 - Новая книга");
-        System.out.print("2 - Список книг");
-        System.out.print("3 - Зарегестрировать чит.");
-        System.out.print("4 - Выдать книгу");
-        System.out.print("5 - Вернуть");
-        int userTask = s.nextInt();
         do {
+            System.out.println("Выберите задачу");
+            System.out.println("1 - Новая книга");
+            System.out.println("2 - Список книг");
+            System.out.println("3 - Зарегестрировать чит.");
+            System.out.println("4 - Выдать книгу");
+            System.out.println("5 - Вернуть");
+            int userTask = s.nextInt();
             if(userTask == 1){
-                //create book
-            
+                //Create book
+                
             }else if(userTask == 2){
                 //List book
-
+     
             }else if(userTask == 3){
                 //Register book
-
+     
             }else if(userTask == 4){
                 //Give book
-
+     
             }else if(userTask == 5){
                 // Return book
-
+     
             }else if(userTask == 99){
                 //Close program
                 break;
