@@ -29,14 +29,14 @@ public class App {
         System.out.println(h1.toString()); //with toStr
         */
         do {
-            System.out.println("Выберите задачу");
-            System.out.println("1 - Новая книга");
-            System.out.println("2 - Список книг");
-            System.out.println("3 - Зарегестрировать чит.");
-            System.out.println("4 - Выдать книгу");
-            System.out.println("5 - Вернуть");
-            System.out.println("6 - Список выданных книг");
-            System.out.println("7 - Список читателей");
+            System.out.println("Выберите задачу"); 
+            System.out.println("1 - Новая книга");//+
+            System.out.println("2 - Список книг");//+
+            System.out.println("3 - Зарегестрировать чит.");//+
+            System.out.println("4 - Выдать книгу");//-
+            System.out.println("5 - Вернуть");//-
+            System.out.println("6 - Список выданных книг");//+
+            System.out.println("7 - Список читателей");//+
             System.out.println("99 - Стоп");
             int userTask = s.nextInt();
             if(userTask == 1){
@@ -61,12 +61,10 @@ public class App {
                 HistoryProvider hp = new HistoryProvider();
                 this.hp = hp.returnBook(this.hp);
             }else if(userTask == 6){
-                /*
                 for (int i = 0; i < hp.size(); i++) {
-                    System.out.println("Пользователь: " + this.hp.getReader() + "/ Читает: " + this.hp.getBook());
- 
+                    History h = hp.get(i);
+                    System.out.println("Пользователь: " + h.getReader() + "/ Читает: " + h.getBook());
                 }
-                */
             }else if(userTask == 7){
                 for (int i = 0; i < readers.size(); i++) {
                     System.out.println(readers.get(i).toString());
