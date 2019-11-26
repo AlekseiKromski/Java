@@ -35,8 +35,14 @@ public class HistoryProvider {
         return h;
     }
     
-    public ArrayList<History> returnBook(ArrayList<History> hp){
-        //hp.setReturnOfDate(new Date());
-        return hp;
+    public void returnBook(ArrayList<History> hp){
+        Scanner s = new Scanner(System.in);
+        for (int i = 0; i < hp.size(); i++) {
+            History get = hp.get(i);
+            System.out.println( i + " " + get.getBook()); 
+        }
+        int userInt = s.nextInt();
+        History get = hp.get(userInt);
+        get.setReturnOfDate(new Date());
     }
 }

@@ -59,7 +59,7 @@ public class App {
             }else if(userTask == 5){
                 // Return book
                 HistoryProvider hp = new HistoryProvider();
-                this.hp = hp.returnBook(this.hp);
+                hp.returnBook(this.hp);
             }else if(userTask == 6){
                 for (int i = 0; i < hp.size(); i++) {
                     History h = hp.get(i);
