@@ -5,6 +5,7 @@
  */
 package myclasses;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 public class HistoryProvider {
     
-    public History giveBook(Book book, Reader reader){
+    public History giveBook(ArrayList<book>, ArrayList<reader>){
         History h = new History(new Date(), null, book, reader);
         return h;
     }

@@ -22,6 +22,7 @@ public class BookProvider {
         String authorBook = s.nextLine();
         System.out.print("Введите год выпуска книги: ");
         int yearPublisherBook = s.nextInt();
+        String enter2 = s.nextLine();
         System.out.print("Введите isbn книги: ");
         String isbnBook = s.nextLine();
         
