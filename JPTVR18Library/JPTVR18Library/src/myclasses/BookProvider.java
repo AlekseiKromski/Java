@@ -45,9 +45,9 @@ public class BookProvider {
         int mounthReader = s.nextInt();
         System.out.print("Введите год рождения пользов.: ");
         int yearReader = s.nextInt();
+        String enter = s.nextLine();
         System.out.print("Введите номер.телефона пользов.: ");
         String numberReader = s.nextLine();
-        String enter = s.nextLine();
         String enter2 = s.nextLine();
         Reader r = new Reader(fnameReader, lnameReader,dayReader,mounthReader,yearReader,numberReader);
         return r;

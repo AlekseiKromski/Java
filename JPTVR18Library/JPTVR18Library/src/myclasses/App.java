@@ -13,9 +13,11 @@ import java.util.Scanner;
  * @author pupil
  */
 public class App {
+    private Book book;
+    private Reader reader;
+    private History hp;
     public void run(){
         Scanner s = new Scanner(System.in);
-        BookProvider bp = new BookProvider();
         System.out.println("Консольная библеотека");
         /*
         Book b1 = new Book("Witcher","Sapkovsky", 2010, "1234");
@@ -36,21 +38,23 @@ public class App {
             int userTask = s.nextInt();
             if(userTask == 1){
                 //Create book
-                Book b = bp.createBook();
+                BookProvider bp = new BookProvider();
+                this.book = bp.createBook();
             }else if(userTask == 2){
                 //List book
                 
             }else if(userTask == 3){
                 //Register book
-                Reader r = bp.createReader();
-                System.out.println(r.toString());
+                BookProvider bp = new BookProvider();
+                this.reader = bp.createReader();
             }else if(userTask == 4){
                 //Give book
-                
-     
+                HistoryProvider hp = new HistoryProvider();
+                this.hp = hp.giveBook(book, reader);
             }else if(userTask == 5){
                 // Return book
-     
+                HistoryProvider hp = new HistoryProvider();
+                this.hp = hp.returnBook(this.hp);
             }else if(userTask == 99){
                 //Close program
                 break;
