@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class App {
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<Reader> readers = new ArrayList<>();
-    private History hp;
+    private ArrayList<History> hp = new ArrayList<>();
     public void run(){
         Scanner s = new Scanner(System.in);
         System.out.println("Консольная библеотека");
@@ -55,13 +55,18 @@ public class App {
             }else if(userTask == 4){
                 //Give book
                 HistoryProvider hp = new HistoryProvider();
-                this.hp = hp.giveBook(books, readers);
+                this.hp.add(hp.giveBook(books, readers));
             }else if(userTask == 5){
                 // Return book
                 HistoryProvider hp = new HistoryProvider();
                 this.hp = hp.returnBook(this.hp);
             }else if(userTask == 6){
-                System.out.println("Пользователь: " + this.hp.getReader() + "/ Читает: " + this.hp.getBook());
+                /*
+                for (int i = 0; i < hp.size(); i++) {
+                    System.out.println("Пользователь: " + this.hp.getReader() + "/ Читает: " + this.hp.getBook());
+ 
+                }
+                */
             }else if(userTask == 7){
                 for (int i = 0; i < readers.size(); i++) {
                     System.out.println(readers.get(i).toString());
