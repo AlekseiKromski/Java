@@ -80,6 +80,37 @@ public class SaveFileToStorage {
         }
     }
     
+    public void saveHistory(ArrayList<History> history){
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream("history.txt");
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(history);
+            objectOutputStream.flush();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, "Нету файла", ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, "Не записать файл", ex);
+        }
+        finally{
+            if(objectOutputStream != null){
+                try {
+                    objectOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                }
+            }
+            if(fileOutputStream != null){
+                try {
+                    fileOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                }
+            }
+        }
+    }
+    
     
     //read
     public Collection<? extends Book> readFileBooks(){
@@ -116,5 +147,23 @@ public class SaveFileToStorage {
             Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, "Класс не найден", ex);
         }
         return reader;
+    }
+    
+    public Collection<? extends History> readFileHistory(){
+        ArrayList<History> history = new ArrayList();
+        FileInputStream fileInputStream = null;
+        ObjectInputStream objectInputStream = null;
+        try {
+            fileInputStream= new FileInputStream("History.txt");
+            objectInputStream = new ObjectInputStream(fileInputStream);
+            history = (ArrayList<History>) objectInputStream.readObject();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, "Ошибка чтения файла Books.txt", ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, "Ошибка чтения файла Books.txt", ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, "Класс не найден", ex);
+        }
+        return history;
     }
 }

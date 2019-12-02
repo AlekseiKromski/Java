@@ -24,6 +24,7 @@ public class App {
         SaveFileToStorage sfts = new SaveFileToStorage();
         this.books.addAll(sfts.readFileBooks());
         this.readers.addAll(sfts.readFileReader());
+        this.hp.addAll(sfts.readFileHistory());
     }
     
     public void run(){
@@ -69,10 +70,14 @@ public class App {
                 //Give book
                 HistoryProvider hp = new HistoryProvider();
                 this.hp.add(hp.giveBook(books, readers));
+                SaveFileToStorage sfts = new SaveFileToStorage();
+                sfts.saveHistory(this.hp);
             }else if(userTask == 5){
                 // Return book
                 HistoryProvider hp = new HistoryProvider();
                 hp.returnBook(this.hp);
+                SaveFileToStorage sfts = new SaveFileToStorage();
+                sfts.saveHistory(this.hp);
             }else if(userTask == 6){
                 for (int i = 0; i < hp.size(); i++) {
                     History h = hp.get(i);
