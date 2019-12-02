@@ -84,7 +84,7 @@ public class SaveFileToStorage {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
-            fileOutputStream = new FileOutputStream("history.txt");
+            fileOutputStream = new FileOutputStream("History.txt");
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(history);
             objectOutputStream.flush();

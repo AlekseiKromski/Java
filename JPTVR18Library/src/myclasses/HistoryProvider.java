@@ -20,14 +20,14 @@ public class HistoryProvider {
         System.out.println("Список книг: ");
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);
-            System.out.println(i + book.toString());
+            System.out.println(i + " " + book.getName());
         }
         System.out.print("Выберите книгу: ");
         int userBook = s.nextInt();
         System.out.println("Список читателей: ");
         for (int i = 0; i < readers.size(); i++) {
             Reader reader = readers.get(i);
-            System.out.println(i + reader.toString());
+            System.out.println(i + " Имя: " + reader.getFname() + " Фамилия: " + reader.getLname());
         }
         System.out.print("Выберите читателея: ");
         int userReader = s.nextInt();
