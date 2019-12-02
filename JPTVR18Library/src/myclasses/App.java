@@ -14,9 +14,18 @@ import java.util.Scanner;
  * @author pupil
  */
 public class App {
+    
+    
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<Reader> readers = new ArrayList<>();
     private ArrayList<History> hp = new ArrayList<>();
+
+    public App() {
+        SaveFileToStorage sfts = new SaveFileToStorage();
+        this.books.addAll(sfts.readFileBooks());
+        this.readers.addAll(sfts.readFileReader());
+    }
+    
     public void run(){
         Scanner s = new Scanner(System.in);
         System.out.println("Консольная библеотека");
@@ -43,6 +52,8 @@ public class App {
                 //Create book
                 BookProvider bp = new BookProvider();
                 this.books.add(bp.createBook());
+                SaveFileToStorage sfts = new SaveFileToStorage();
+                sfts.saveBooks(this.books);
             }else if(userTask == 2){
                 //List book
                 for (int i = 0; i < books.size(); i++) {
@@ -52,6 +63,8 @@ public class App {
                 //Register book
                 BookProvider bp = new BookProvider();
                 this.readers.add(bp.createReader());
+                SaveFileToStorage sfts = new SaveFileToStorage();
+                sfts.saveReaders(this.readers);
             }else if(userTask == 4){
                 //Give book
                 HistoryProvider hp = new HistoryProvider();
