@@ -5,6 +5,7 @@
  */
 package myclasses;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import provider.BookProvider;
 import provider.HistoryProvider;
@@ -16,9 +17,9 @@ import provider.ReaderProvider;
  */
 public class App {
     
-    private Book book = new Book();
-    private Reader reader = new Reader();
-    private History history = new History();
+    private ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Reader> readers = new ArrayList<>();
+    private ArrayList<History> histories = new ArrayList<>();
     
     public void run(){
         Scanner s = new Scanner(System.in);
@@ -38,25 +39,33 @@ public class App {
                 break;
             }else if(userAction == 1){
                 //add book
-                this.book = BookProvider.createBook();
+                this.books.add(BookProvider.createBook());
             }else if(userAction == 2){
                 //add reader
-                this.reader = ReaderProvider.createReader();
+                this.readers.add(ReaderProvider.createReader());
             }else if(userAction == 3){
                 //give book
-                this.history = HistoryProvider.giveBook(this.book, this.reader);
+                this.histories.add(HistoryProvider.giveBook(this.books, this.readers));
             }else if(userAction == 4){
                 //return book
-                HistoryProvider.returnBook(this.history);
+                HistoryProvider.returnBook(histories);
             }else if(userAction == 5){
                 //list of Book
-                System.out.println(this.book.toString());
+                for(Book book : books){
+                    System.out.println(book);
+                } 
             }else if(userAction == 6){
                 //list of Reader
-                System.out.println(this.reader.toString());
+                for(Reader reader : readers){
+                    System.out.println(reader);
+                } 
             }else if(userAction == 7){
                 //list of History
-                System.out.println(this.history.toString());
+                for(History history : histories){
+                    if(history.getReturnOfDate() == null){
+                        System.out.println(history);
+                    }
+                }
             }
         }while(true);
         
