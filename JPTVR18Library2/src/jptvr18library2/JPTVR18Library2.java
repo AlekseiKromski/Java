@@ -5,6 +5,7 @@
  */
 package jptvr18library2;
 
+import java.io.IOException;
 import myclasses.App;
 
 /**
@@ -16,7 +17,7 @@ public class JPTVR18Library2 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         App app = new App();
         app.run();
     }

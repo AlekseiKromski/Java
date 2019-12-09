@@ -5,6 +5,7 @@
  */
 package myclasses;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
  *
  * @author ShinSais
  */
-public class History {
+public class History implements Serializable{
     private Date giveOfDate;
     private Date returnOfDate;
     private Book book;

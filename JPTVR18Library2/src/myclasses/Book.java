@@ -5,13 +5,14 @@
  */
 package myclasses;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author ShinSais
  */
-public class Book {
+public class Book implements Serializable{
     private String name;
     private String author;
     private int publishYear;
