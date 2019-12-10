@@ -20,7 +20,7 @@ import myclasses.Reader;
  *
  * @author Melnikov
  */
-public class SaveFileToStorage {
+public class SaverToFile {
 
     public static void saveBooks(ArrayList<Book> books) {
         ObjectOutputStream objectOutputStream;
@@ -29,7 +29,7 @@ public class SaveFileToStorage {
             objectOutputStream.writeObject(books);
             objectOutputStream.close();
         } catch (IOException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
     public static void saveReaders(ArrayList<Reader> reader) {
@@ -39,7 +39,7 @@ public class SaveFileToStorage {
             objectOutputStream.writeObject(reader);
             objectOutputStream.close();
         } catch (IOException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
     public static void saveHistory(ArrayList<History> history) {
@@ -49,7 +49,7 @@ public class SaveFileToStorage {
             objectOutputStream.writeObject(history);
             objectOutputStream.close();
         } catch (IOException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
     
@@ -59,11 +59,11 @@ public class SaveFileToStorage {
             ObjectInputStream objectInputStream = new ObjectInputStream( new FileInputStream("Books.txt"));
             books = (ArrayList<Book>) objectInputStream.readObject();  
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         }
         return books;
     }
@@ -73,11 +73,11 @@ public class SaveFileToStorage {
             ObjectInputStream objectInputStream = new ObjectInputStream( new FileInputStream("Reader.txt"));
             reader = (ArrayList<Reader>) objectInputStream.readObject();  
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         }
         return reader;
     }
@@ -87,11 +87,11 @@ public class SaveFileToStorage {
             ObjectInputStream objectInputStream = new ObjectInputStream( new FileInputStream("History.txt"));
             history = (ArrayList<History>) objectInputStream.readObject();  
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SaveFileToStorage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaverToFile.class.getName()).log(Level.SEVERE, null, ex);
         }
         return history;
     }

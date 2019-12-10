@@ -12,7 +12,7 @@ import java.util.Scanner;
 import provider.BookProvider;
 import provider.HistoryProvider;
 import provider.ReaderProvider;
-import storage.SaveFileToStorage;
+import storage.SaverToFile;
 
 /**
  *
@@ -25,9 +25,9 @@ public class App {
     private ArrayList<History> histories = new ArrayList<>();
     
     public App(){
-        this.books.addAll(SaveFileToStorage.readFileBooks());
-        this.readers.addAll(SaveFileToStorage.readFileReader());
-        this.histories.addAll(SaveFileToStorage.readFileHistory());
+        this.books.addAll(SaverToFile.readFileBooks());
+        this.readers.addAll(SaverToFile.readFileReader());
+        this.histories.addAll(SaverToFile.readFileHistory());
     }
     
     public void checkHistory(){
@@ -60,21 +60,21 @@ public class App {
             }else if(userAction == 1){
                 //add book
                 this.books.add(BookProvider.createBook());
-                SaveFileToStorage.saveBooks(this.books);
+                SaverToFile.saveBooks(this.books);
             }else if(userAction == 2){
                 //add reader
                 this.readers.add(ReaderProvider.createReader());
-                SaveFileToStorage.saveReaders(this.readers);
+                SaverToFile.saveReaders(this.readers);
             }else if(userAction == 3){
                 //give book
                 this.checkHistory();
                 this.histories.add(HistoryProvider.giveBook(this.books, this.readers, this.histories));
-                SaveFileToStorage.saveHistory(histories);
+                SaverToFile.saveHistory(histories);
             }else if(userAction == 4){
                 //return book
                 this.checkHistory();
                 HistoryProvider.returnBook(histories);
-                SaveFileToStorage.saveHistory(histories);
+                SaverToFile.saveHistory(histories);
             }else if(userAction == 5){
                 //list of Books
                 boolean flag = true;
