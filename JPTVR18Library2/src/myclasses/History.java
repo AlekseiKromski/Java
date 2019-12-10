@@ -60,7 +60,7 @@ public class History implements Serializable{
     public void setReader(Reader reader) {
         this.reader = reader;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 5;

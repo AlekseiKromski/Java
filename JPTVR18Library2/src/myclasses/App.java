@@ -30,9 +30,20 @@ public class App {
         this.histories.addAll(SaveFileToStorage.readFileHistory());
     }
     
+    public void checkHistory(){
+        History history = null;
+        for (int i = 0; i < histories.size(); i++) {
+            history = histories.get(i);
+            if(history.getGiveOfDate() == null && history.getReturnOfDate() == null && history.getBook() == null && history.getReader() == null){
+                histories.remove(history);
+            }
+        }
+    } 
+    
     public void run() throws IOException{
         Scanner s = new Scanner(System.in);
         do {
+            this.checkHistory();
             System.out.println("Выберите действие");
             System.out.println("1 - Добавить книг.");
             System.out.println("2 - Добавить чит.");
@@ -56,17 +67,29 @@ public class App {
                 SaveFileToStorage.saveReaders(this.readers);
             }else if(userAction == 3){
                 //give book
-                this.histories.add(HistoryProvider.giveBook(this.books, this.readers));
+                this.checkHistory();
+                this.histories.add(HistoryProvider.giveBook(this.books, this.readers, this.histories));
                 SaveFileToStorage.saveHistory(histories);
             }else if(userAction == 4){
                 //return book
+                this.checkHistory();
                 HistoryProvider.returnBook(histories);
                 SaveFileToStorage.saveHistory(histories);
             }else if(userAction == 5){
                 //list of Books
-                for(Book book : books){
-                    System.out.println(book);
-                } 
+                boolean flag = true;
+                for (int i = 0; i < books.size(); i++) {
+                    for(History history: histories){
+                        if(history.getBook().equals(books.get(i)) && history.getReturnOfDate()== null){
+                            flag = false;
+                            break;
+                        }
+                    }
+                    if(flag){
+                        System.out.println(i+". "+books.get(i).toString());
+                    }
+                    flag=true; 
+                }
             }else if(userAction == 6){
                 //list of Reader
                 for(Reader reader : readers){
@@ -74,14 +97,19 @@ public class App {
                 } 
             }else if(userAction == 7){
                 //list of History
-                for(History history : histories){
+                this.checkHistory();
+                History history = null;
+                for (int i = 0; i < histories.size(); i++) {
+                    history = histories.get(i);
                     if(history.getReturnOfDate() == null){
-                        System.out.println(history);
+                        System.out.printf("Читатель %s %s читает %s%n",
+                            history.getReader().getFname(),
+                            history.getReader().getLname(),
+                            history.getBook().getName()
+                        );
                     }
                 }
             }
         }while(true);
-        
-        
     }
 }
