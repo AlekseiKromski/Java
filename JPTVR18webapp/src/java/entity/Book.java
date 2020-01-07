@@ -22,16 +22,19 @@ public class Book implements Serializable{
     private Long id;
     private String name;
     private String author;
+    private String quantityl;
+    private String count;
     private int publishYear;
     private String isbn;
 
     public Book() {
     }
 
-    public Book(Long id, String name, String author, int publishYear, String isbn) {
-        this.id = id;
+    public Book( String name, String author, String quantityl, String count, int publishYear, String isbn) {
         this.name = name;
         this.author = author;
+        this.quantityl = quantityl;
+        this.count = count;
         this.publishYear = publishYear;
         this.isbn = isbn;
     }
@@ -60,6 +63,22 @@ public class Book implements Serializable{
         this.author = author;
     }
 
+    public String getQuantityl() {
+        return quantityl;
+    }
+
+    public void setQuantityl(String quantityl) {
+        this.quantityl = quantityl;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
+
     public int getPublishYear() {
         return publishYear;
     }
@@ -78,12 +97,14 @@ public class Book implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.name);
-        hash = 71 * hash + Objects.hashCode(this.author);
-        hash = 71 * hash + this.publishYear;
-        hash = 71 * hash + Objects.hashCode(this.isbn);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.name);
+        hash = 37 * hash + Objects.hashCode(this.author);
+        hash = 37 * hash + Objects.hashCode(this.quantityl);
+        hash = 37 * hash + Objects.hashCode(this.count);
+        hash = 37 * hash + this.publishYear;
+        hash = 37 * hash + Objects.hashCode(this.isbn);
         return hash;
     }
 
@@ -108,6 +129,12 @@ public class Book implements Serializable{
         if (!Objects.equals(this.author, other.author)) {
             return false;
         }
+        if (!Objects.equals(this.quantityl, other.quantityl)) {
+            return false;
+        }
+        if (!Objects.equals(this.count, other.count)) {
+            return false;
+        }
         if (!Objects.equals(this.isbn, other.isbn)) {
             return false;
         }
@@ -119,8 +146,10 @@ public class Book implements Serializable{
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", name=" + name + ", author=" + author + ", publishYear=" + publishYear + ", isbn=" + isbn + '}';
+        return "Book{" + "id=" + id + ", name=" + name + ", author=" + author + ", quantityl=" + quantityl + ", count=" + count + ", publishYear=" + publishYear + ", isbn=" + isbn + '}';
     }
+
+    
     
     
 }
