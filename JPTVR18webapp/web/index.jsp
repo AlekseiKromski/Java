@@ -14,5 +14,6 @@
     <body>
         <h1>Hello user!</h1>
         <a href="showAddBook">Add book</a>
+        <a href="listBooks">List of books</a>
     </body>
 </html>
