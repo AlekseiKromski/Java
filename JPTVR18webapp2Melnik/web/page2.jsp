@@ -1,6 +1,6 @@
 <%-- 
-    Document   : page1
-    Created on : Jan 10, 2020, 8:40:35 AM
+    Document   : page2
+    Created on : Jan 10, 2020, 9:20:48 AM
     Author     : pupil
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>page1</h1>
+        <h1>page2</h1>
     </body>
 </html>
