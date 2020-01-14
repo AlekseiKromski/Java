@@ -22,17 +22,16 @@ public class Reader implements Serializable {
     private Long id;
     private String Fname;
     private String Lname;
-    private int day;
-    private int mounth;
-    private int year;
+    private String day;
+    private String mounth;
+    private String year;
     private String number;
     private String allDateBurn;
 
     public Reader() {
     }
 
-    public Reader(Long id, String Fname, String Lname, int day, int mounth, int year, String number, String allDateBurn) {
-        this.id = id;
+    public Reader(String Fname, String Lname, String day, String mounth, String year, String number, String allDateBurn) {
         this.Fname = Fname;
         this.Lname = Lname;
         this.day = day;
@@ -66,27 +65,27 @@ public class Reader implements Serializable {
         this.Lname = Lname;
     }
 
-    public int getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
-    public int getMounth() {
+    public String getMounth() {
         return mounth;
     }
 
-    public void setMounth(int mounth) {
+    public void setMounth(String mounth) {
         this.mounth = mounth;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -109,14 +108,14 @@ public class Reader implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.Fname);
-        hash = 79 * hash + Objects.hashCode(this.Lname);
-        hash = 79 * hash + this.day;
-        hash = 79 * hash + this.mounth;
-        hash = 79 * hash + this.year;
-        hash = 79 * hash + Objects.hashCode(this.number);
-        hash = 79 * hash + Objects.hashCode(this.allDateBurn);
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.Fname);
+        hash = 83 * hash + Objects.hashCode(this.Lname);
+        hash = 83 * hash + Objects.hashCode(this.day);
+        hash = 83 * hash + Objects.hashCode(this.mounth);
+        hash = 83 * hash + Objects.hashCode(this.year);
+        hash = 83 * hash + Objects.hashCode(this.number);
+        hash = 83 * hash + Objects.hashCode(this.allDateBurn);
         return hash;
     }
 
@@ -132,19 +131,19 @@ public class Reader implements Serializable {
             return false;
         }
         final Reader other = (Reader) obj;
-        if (this.day != other.day) {
-            return false;
-        }
-        if (this.mounth != other.mounth) {
-            return false;
-        }
-        if (this.year != other.year) {
-            return false;
-        }
         if (!Objects.equals(this.Fname, other.Fname)) {
             return false;
         }
         if (!Objects.equals(this.Lname, other.Lname)) {
+            return false;
+        }
+        if (!Objects.equals(this.day, other.day)) {
+            return false;
+        }
+        if (!Objects.equals(this.mounth, other.mounth)) {
+            return false;
+        }
+        if (!Objects.equals(this.year, other.year)) {
             return false;
         }
         if (!Objects.equals(this.number, other.number)) {
@@ -161,8 +160,12 @@ public class Reader implements Serializable {
 
     @Override
     public String toString() {
-        return "Reader{" + "id=" + id + ", Fname=" + Fname + ", Lname=" + Lname + ", day=" + day + ", mounth=" + mounth + ", year=" + year + ", number=" + number + ", allDateBurn=" + allDateBurn + '}';
+        return "Reader{" + "Fname=" + Fname + ", Lname=" + Lname + ", day=" + day + ", mounth=" + mounth + ", year=" + year + ", number=" + number + ", allDateBurn=" + allDateBurn + '}';
     }
+
+    
+
+
      
     
 }

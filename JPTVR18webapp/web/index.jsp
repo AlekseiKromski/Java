@@ -13,7 +13,21 @@
     </head>
     <body>
         <h1>Hello user!</h1>
-        <a href="showAddBook">Add book</a>
+        <span style="color:green">${info}</span>
+        <hr>
+        <h2>Books</h2>
+        <a href="showAddBook">Add book</a><br>
+        <a href="deleteBook">Delete book</a><br>
         <a href="listBooks">List of books</a>
+        <hr>
+        <h2>Readers</h2>
+        <a href="addReader">Add reader</a><br>
+        <a href="deleteReader">Delete reader</a><br>
+        <a href="listReader">List of reader</a>
+        <hr>
+        <h2>History</h2>
+        <a href="showAddReader">Give book</a><br>
+        <a href="deleteReader">Return book</a><br>
+        <a href="listReader">List of history</a>
     </body>
 </html>

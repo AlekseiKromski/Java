@@ -25,8 +25,10 @@ import session.BookFacade;
     "/showAddBook",
     "/createBook",
     "/listBooks",
+    "/deleteBook",
+    "/deleteBookAction",
 })
-public class WebController extends HttpServlet {
+public class WebControllerBook extends HttpServlet {
 @EJB BookFacade bookFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,13 +56,25 @@ public class WebController extends HttpServlet {
                 String quantity = request.getParameter("quantity");
                 Book book = new Book(name, author, quantity, quantity, new Integer(publishedYear), isbn);
                 bookFacade.create(book);
-                
+                request.setAttribute("info", "Книга была добавлена");
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
                 break;
             case "/listBooks":
                 List<Book> listBooks = bookFacade.findAll();
                 request.setAttribute("listBooks", listBooks);
                 request.getRequestDispatcher("/listBooks.jsp").forward(request, response);
+                break;
+            case "/deleteBook":
+                List<Book> listBooks2 = bookFacade.findAll();
+                request.setAttribute("listBooks", listBooks2);
+                request.getRequestDispatcher("/deleteBook.jsp").forward(request, response);
+                break;
+            case "/deleteBookAction":
+                String id = request.getParameter("bookId");
+                Book b = bookFacade.find(Long.parseLong(id));
+                bookFacade.remove(b);
+                request.setAttribute("info", "Book : " + b.toString() + " was deleted");
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
                 break;
             default:
                 throw new AssertionError();
