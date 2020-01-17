@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Add book</h1>
-        <form action="createBook">
+        <form action="createBook"  method="post">
             Name book:<br>
             <input type="text" name="name"><br>
             

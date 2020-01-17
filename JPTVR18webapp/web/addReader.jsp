@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Add reader</h1>
-        <form action="addReaderAction">
+        <form action="addReaderAction" method="post">
             Fname:<br>
             <input type="text" name="Fname"><br>
             

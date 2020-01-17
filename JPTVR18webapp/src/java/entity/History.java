@@ -36,13 +36,13 @@ public class History implements Serializable{
     public History() {
     }
 
-    public History(Long id, Date giveOfDate, Date returnOfDate, Book book, Reader reader) {
-        this.id = id;
+    public History(Date giveOfDate, Date returnOfDate, Book book, Reader reader) {
         this.giveOfDate = giveOfDate;
         this.returnOfDate = returnOfDate;
         this.book = book;
         this.reader = reader;
     }
+
 
     public Long getId() {
         return id;
@@ -127,8 +127,10 @@ public class History implements Serializable{
 
     @Override
     public String toString() {
-        return "History{" + "id=" + id + ", giveOfDate=" + giveOfDate + ", returnOfDate=" + returnOfDate + ", book=" + book + ", reader=" + reader + '}';
+        return "History{" + "giveOfDate=" + giveOfDate + ", returnOfDate=" + returnOfDate + ", book=" + book + ", reader=" + reader + '}';
     }
+
+    
 
     
     

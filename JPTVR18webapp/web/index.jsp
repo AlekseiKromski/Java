@@ -26,8 +26,8 @@
         <a href="listReader">List of reader</a>
         <hr>
         <h2>History</h2>
-        <a href="showAddReader">Give book</a><br>
-        <a href="deleteReader">Return book</a><br>
-        <a href="listReader">List of history</a>
+        <a href="addHistory">Give book</a><br>
+        <a href="returnBook">Return book</a><br>
+        <a href="listHistory">List of history</a>
     </body>
 </html>
