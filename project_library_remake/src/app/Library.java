@@ -32,6 +32,8 @@ public class Library {
     Scanner s = new Scanner(System.in);
     Boolean run = true;
 
+    String[] books;
+
     public void library(){
         while(this.run){
             System.out.println(this.BLACK + this.YELLOW_BACKGROUND + "1 - List of books" + this.RESET);
@@ -46,6 +48,12 @@ public class Library {
                 case 0:
                     this.run = false;
                     break;
+                case 1:
+                    for (String book : this.books){
+                        System.out.println(book);
+                    }
+                    break;
+
                 default:
                     System.out.println(this.RED + "==================" + this.RESET);
                     System.out.println(this.RED + "YOUR TASK IS WRONG" + this.RESET);
