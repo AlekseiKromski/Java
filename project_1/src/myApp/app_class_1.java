@@ -17,4 +17,6 @@ public class app_class_1 {
         String name = this.s.nextLine();
         System.out.print("Hello, " + name);
     }
+
+    public
 }
