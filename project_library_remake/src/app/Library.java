@@ -1,6 +1,11 @@
 package app;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
+import enitity.Book;
+import providers.BookProvider;
+import save.saveToFile;
 
 public class Library {
 
@@ -32,9 +37,14 @@ public class Library {
     Scanner s = new Scanner(System.in);
     Boolean run = true;
 
-    String[] books;
+    ArrayList <Book> books = new ArrayList<>();
+    saveToFile stf = new saveToFile();
 
-    public void library(){
+    public Library(){
+        this.books = this.stf.uploadIntoFile();
+    }
+
+    public void library() throws IOException {
         while(this.run){
             System.out.println(this.BLACK + this.YELLOW_BACKGROUND + "1 - List of books" + this.RESET);
             System.out.println(this.BLACK + this.GREEN_BACKGROUND + "2 - Add book" + this.RESET);
@@ -49,19 +59,20 @@ public class Library {
                     this.run = false;
                     break;
                 case 1:
-                    for (String book : this.books){
+                    for (Book book: this.books) {
                         System.out.println(book);
                     }
                     break;
-
+                case 2:
+                    this.books.add(BookProvider.addBook(this.s));
+                    break;
                 default:
                     System.out.println(this.RED + "==================" + this.RESET);
-                    System.out.println(this.RED + "YOUR LIFE IS ERROR" + this.RESET);
+                    System.out.println(this.RED + "YOUR TASK IS WRONG" + this.RESET);
                     System.out.println(this.RED + "==================" + this.RESET);
                     break;
             }
-
-
+            this.stf.saveToFile(this.books);
         }
 
     }
