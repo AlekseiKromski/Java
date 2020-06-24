@@ -51,4 +51,15 @@ public class app_class_2 {
             a*=2;
         }
     }
+
+    public void cellandmore(){
+        float num = 5.25f;
+
+
+        int floor = (int) Math.floor(num);
+        int cell = (int) Math.ceil(num);
+        System.out.println(Math.round(num));
+        System.out.println(floor);
+        System.out.println(cell);
+    }
 }

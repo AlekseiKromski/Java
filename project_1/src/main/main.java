@@ -17,7 +17,8 @@ public class main {
         //ap2.multiplicationTable3();
         //ap2.getSumm();
         //ap2.getSumm2();
-        ap2.getSumm3();
+        //ap2.getSumm3();
+        ap2.cellandmore();
     }
 
 
