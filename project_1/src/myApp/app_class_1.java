@@ -18,5 +18,4 @@ public class app_class_1 {
         System.out.print("Hello, " + name);
     }
 
-    public
 }

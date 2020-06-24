@@ -56,7 +56,7 @@ public class Library {
 
                 default:
                     System.out.println(this.RED + "==================" + this.RESET);
-                    System.out.println(this.RED + "YOUR TASK IS WRONG" + this.RESET);
+                    System.out.println(this.RED + "YOUR LIFE IS ERROR" + this.RESET);
                     System.out.println(this.RED + "==================" + this.RESET);
                     break;
             }
