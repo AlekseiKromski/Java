@@ -6,6 +6,7 @@
 package servlets;
 
 import entity.Resource;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import session.ResourceFacade;
+import session.UserFacade;
 
 /**
  *
@@ -27,12 +29,18 @@ import session.ResourceFacade;
     "/deleteResource",
     "/showFormEditResource",
     "/editResource",
+    "/showFormCreateUser",
+    "/createUser",
+    "/listUser",
+    
     
 })
 public class WebController extends HttpServlet {
 
     @EJB
     private ResourceFacade resourceFacade = new ResourceFacade();
+    @EJB
+    private UserFacade userFacade = new UserFacade();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,11 +65,12 @@ public class WebController extends HttpServlet {
                 this.resourceFacade.create(resource);
                 
                 //Then we write object in DB, we will show .jsp page
-                request.setAttribute("info", "your resource have been created");
+                request.setAttribute("info", "your resource has been created");
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
                 
                 break;
             case "/listResource":
+                request.setAttribute("resources", this.resourceFacade.findAll() );
                 request.getRequestDispatcher("/listResource.jsp").forward(request, response);
                 break;
             case "/deleteResource":
@@ -72,6 +81,22 @@ public class WebController extends HttpServlet {
                 break;
             case "/editResource":
                 
+                break;
+            case "/showFormCreateUser":
+                request.getRequestDispatcher("/showFormCreateUser.jsp").forward(request, response);
+                break;
+            case "/createUser":
+                String name_user = request.getParameter("name");
+                String login_user = request.getParameter("login");
+                User user = new User(name_user, login_user);
+                this.userFacade.create(user);
+                request.setAttribute("info", "your user has been created");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                break;
+            case "/listUser":
+                
+                request.setAttribute("users", this.userFacade.findAll() );
+                request.getRequestDispatcher("listUsers.jsp").forward(request, response);
                 break;
         }
         

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : showFormAddResource
-    Created on : Sep 10, 2020, 2:50:54 PM
-    Author     : pupil
+    Document   : showFormAddUser
+    Created on : 14.09.2020, 21:18:48
+    Author     : yanikarp
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Создание нового ресурса</h1>
+        <h1>Create new user</h1>
         <form method="post" action="createResource">
             <p>
                 Name of resource: 

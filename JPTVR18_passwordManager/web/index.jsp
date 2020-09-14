@@ -18,9 +18,12 @@
             ${info}
         </p>
         <p>Links:</p>
-        <a href="showFormAddResource">Добавить новый ресурс</a>
-        <br>
-         <a href="listResource">Список ресурсов</a>
+        <ul>
+            <li><a href="showFormAddResource">Добавить новый ресурс</a></li>
+            <li><a href="listResource">Список ресурсов</a></li>
+            <li><a href="showFormCreateUser">Добавить пользователя</a></li>
+            <li><a href="listUser">Список пользователей</a></li>
+        </ul>
         
     </body>
 </html>
