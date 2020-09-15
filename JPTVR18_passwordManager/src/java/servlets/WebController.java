@@ -7,16 +7,21 @@ package servlets;
 
 import entity.Resource;
 import entity.User;
+import entity.UserResources;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import session.ResourceFacade;
 import session.UserFacade;
+import session.UserResourcesFacade;
 
 /**
  *
@@ -29,8 +34,6 @@ import session.UserFacade;
     "/deleteResource",
     "/showFormEditResource",
     "/editResource",
-    "/showFormCreateUser",
-    "/createUser",
     "/listUser",
     
     
@@ -41,13 +44,26 @@ public class WebController extends HttpServlet {
     private ResourceFacade resourceFacade = new ResourceFacade();
     @EJB
     private UserFacade userFacade = new UserFacade();
+    @EJB
+    private UserResourcesFacade userResourcesFacade = new UserResourcesFacade();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(false);
+        if(session == null){
+            request.setAttribute("info", "No permission");
+            request.getRequestDispatcher("/showFormLogin.jsp").forward(request, response);
+        }
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            request.setAttribute("info", "No permission");
+            request.getRequestDispatcher("/showFormLogin").forward(request, response);
+        }
         String path = request.getServletPath();
         switch(path){
             case "/showFormAddResource":
+                request.setAttribute("info", "your resource has been created");
                 request.getRequestDispatcher("/showFormAddResource.jsp").forward(request, response);
                 break;
             case "/createResource":
@@ -58,11 +74,14 @@ public class WebController extends HttpServlet {
                 String login = request.getParameter("login");
                 String password = request.getParameter("password");
                 
-                //Create Entity
+                //Create resource Entity
                 Resource resource = new Resource(name, url, login, password);
-                
-                //Write variable to DB
                 this.resourceFacade.create(resource);
+                
+                //Write recourse and loggined user to userResource
+                Date date = new GregorianCalendar().getTime();
+                UserResources userResource = new UserResources(user, resource, date);
+                this.userResourcesFacade.create(userResource);
                 
                 //Then we write object in DB, we will show .jsp page
                 request.setAttribute("info", "your resource has been created");
@@ -81,17 +100,6 @@ public class WebController extends HttpServlet {
                 break;
             case "/editResource":
                 
-                break;
-            case "/showFormCreateUser":
-                request.getRequestDispatcher("/showFormCreateUser.jsp").forward(request, response);
-                break;
-            case "/createUser":
-                String name_user = request.getParameter("name");
-                String login_user = request.getParameter("login");
-                User user = new User(name_user, login_user);
-                this.userFacade.create(user);
-                request.setAttribute("info", "your user has been created");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
             case "/listUser":
                 

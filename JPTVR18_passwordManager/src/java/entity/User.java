@@ -25,31 +25,24 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
-    private String name;
     private String login;
+    private String password;
 
     public User() {
     }
 
-    public User(String name, String login) {
-        this.name = name;
+    public User(String login, String password) {
         this.login = login;
+        this.password = password;
     }
 
+    
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getLogin() {
@@ -60,12 +53,20 @@ public class User implements Serializable {
         this.login = login;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 73 * hash + Objects.hashCode(this.id);
-        hash = 73 * hash + Objects.hashCode(this.name);
-        hash = 73 * hash + Objects.hashCode(this.login);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.login);
+        hash = 97 * hash + Objects.hashCode(this.password);
         return hash;
     }
 
@@ -81,10 +82,10 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.login, other.login)) {
             return false;
         }
-        if (!Objects.equals(this.login, other.login)) {
+        if (!Objects.equals(this.password, other.password)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
@@ -95,8 +96,12 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", login=" + login + '}';
+        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + '}';
     }
+    
+    
+
+    
 
     
 }

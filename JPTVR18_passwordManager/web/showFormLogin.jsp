@@ -1,6 +1,6 @@
 <%-- 
-    Document   : showFormAddResource
-    Created on : Sep 10, 2020, 2:50:54 PM
+    Document   : showFormLogin
+    Created on : Sep 15, 2020, 1:20:55 PM
     Author     : pupil
 --%>
 
@@ -12,8 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Создание нового ресурса</h1>
-        <form method="post" action="createUser">
+        <h1>Вход в систему</h1>
+        <p>
+            ${info}
+        </p>
+        <form method="post" action="login">
             <p>
                 Login of user 
                 <input type="text" name="login">
@@ -22,7 +25,7 @@
                 Password of resource: 
                 <input type="password" name="password">
             </p>
-            <input type="submit" name="submit" value="create user">
+            <input type="submit" name="submit" value="login">
 
         </form>
     </body>
