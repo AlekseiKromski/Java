@@ -71,7 +71,10 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession(false);
                 if(session != null) session.invalidate();
                 request.setAttribute("info", "You has been logouted");
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+               
+                //request.getRequestDispatcher("/index.jsp").forward(request, response);
+                
+                response.sendRedirect(request.getContextPath() + "/?logout=true");
                 break;
             case "/showFormCreateUser":
                 request.getRequestDispatcher("/showFormCreateUser.jsp").forward(request, response);
