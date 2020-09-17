@@ -6,6 +6,8 @@
 package session;
 
 import entity.Resource;
+import entity.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +29,14 @@ public class ResourceFacade extends AbstractFacade<Resource> {
 
     public ResourceFacade() {
         super(Resource.class);
+    }
+    
+    public List<Resource> findByUser(User user) {
+        try{
+            return em.createQuery("SELECT ur.resource FROM UserResources ur WHERE ur.user = :user").setParameter("user", user).getResultList();
+        }catch(Exception e){
+            return null;
+        }
     }
     
 }

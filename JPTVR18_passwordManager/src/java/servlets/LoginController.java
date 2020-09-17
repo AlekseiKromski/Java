@@ -74,6 +74,7 @@ public class LoginController extends HttpServlet {
                
                 //request.getRequestDispatcher("/index.jsp").forward(request, response);
                 
+                //Make redirect
                 response.sendRedirect(request.getContextPath() + "/?logout=true");
                 break;
             case "/showFormCreateUser":

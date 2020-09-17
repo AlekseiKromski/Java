@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -89,18 +90,41 @@ public class WebController extends HttpServlet {
                 
                 break;
             case "/listResource":
-                request.setAttribute("resources", this.resourceFacade.findAll() );
+                List<Resource> listResources = this.resourceFacade.findByUser(user);
+                request.setAttribute("listResources", listResources);
                 request.getRequestDispatcher("/listResource.jsp").forward(request, response);
                 break;
             case "/deleteResource":
+                //Get id of resource
+                String id_resource = request.getParameter("id");
+                if(id_resource == null || id_resource.equals("")){
+                    response.sendRedirect(request.getContextPath() + "/");
+                }
                 
+                //Find delete resource in list
+                Resource deleteResource = resourceFacade.find(Long.parseLong(id_resource));
+                
+                //Find all resources by user
+                listResources = this.resourceFacade.findByUser(user);
+                if(!listResources.contains(deleteResource)){
+                    response.sendRedirect(request.getContextPath() + "/");
+                }
+                
+                //Delete row in user_resources table 
+                this.userResourcesFacade.removeByResource(deleteResource);
+                
+                //Delete user
+                resourceFacade.remove(deleteResource);
+                
+                //Send data
+                request.setAttribute("info", "your resource has been deleted");
+                request.getRequestDispatcher("/listResource").forward(request, response);
                 break;
             case "/showFormEditResource":
                 
                 break;
             case "/editResource":
                 
-                break;
             case "/listUser":
                 
                 request.setAttribute("users", this.userFacade.findAll() );

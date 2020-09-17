@@ -10,7 +10,7 @@
 <h1>List of resource</h1>
         
         <ul>
-            <c:forEach var="resource" items="${resources}">
-                <li><c:out value="${resource}" /></li>
+            <c:forEach var="resource" items="${listResources}">
+                <li><c:out value="${resource}" /> <a class="btn btn-danger" href="deleteResource?id=${resource.id}">Удалить</a></li>
             </c:forEach>
         </ul>

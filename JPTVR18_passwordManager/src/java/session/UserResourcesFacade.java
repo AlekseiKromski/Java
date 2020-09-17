@@ -5,7 +5,10 @@
  */
 package session;
 
+import entity.Resource;
+import entity.User;
 import entity.UserResources;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +32,8 @@ public class UserResourcesFacade extends AbstractFacade<UserResources> {
         super(UserResources.class);
     }
     
+    public void removeByResource(Resource deleteResource){
+        this.em.createQuery("DELETE FROM UserResources ur WHERE ur.resource = :deleteResource").setParameter("deleteResource", deleteResource);
+        this.em.flush();
+    }
 }
