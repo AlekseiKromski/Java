@@ -29,6 +29,5 @@
             <li><a href="listResource">Список ресурсов</a></li>
             <li><a href="listUser">Список пользователей</a></li>
         </ul>
-        test
     </body>
 </html>
