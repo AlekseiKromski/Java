@@ -32,7 +32,11 @@ public class DefaultController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("logout", "You has been logouted");
+        String logout = request.getParameter("logout");
+        if(logout != null && logout.equals("true")){
+            request.setAttribute("logout", "You has been logouted");
+
+        }
 
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }

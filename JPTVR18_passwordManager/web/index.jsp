@@ -5,11 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-        
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-8">
-            <c:if test="logout">
+            <c:if test="${not empty logout}">
                 <div class="alert alert-success" role="alert">
                     ${logout}
                 </div>
