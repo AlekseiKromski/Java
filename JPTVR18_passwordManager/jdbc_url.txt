@@ -1,0 +1,1 @@
+jdbc:mysql://localhost:3306/jptvr18_passwordmanager?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf8

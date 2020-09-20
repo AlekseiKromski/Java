@@ -111,14 +111,15 @@ public class WebController extends HttpServlet {
                 }
                 
                 //Delete row in user_resources table 
+                System.out.println("TST");
                 this.userResourcesFacade.removeByResource(deleteResource);
                 
-                //Delete user
-                resourceFacade.remove(deleteResource);
+                //Delete resource
+                //this.resourceFacade.remove(deleteResource);
                 
                 //Send data
                 request.setAttribute("info", "your resource has been deleted");
-                request.getRequestDispatcher("/listResource").forward(request, response);
+                request.getRequestDispatcher("/index").forward(request, response);
                 break;
             case "/showFormEditResource":
                 
