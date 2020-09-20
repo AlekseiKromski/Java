@@ -110,12 +110,11 @@ public class WebController extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/");
                 }
                 
-                //Delete row in user_resources table 
-                System.out.println("TST");
+                //Delete row in user_resources table
                 this.userResourcesFacade.removeByResource(deleteResource);
                 
                 //Delete resource
-                //this.resourceFacade.remove(deleteResource);
+                this.resourceFacade.remove(deleteResource);
                 
                 //Send data
                 request.setAttribute("info", "your resource has been deleted");

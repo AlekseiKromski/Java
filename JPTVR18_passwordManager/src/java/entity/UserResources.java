@@ -29,7 +29,7 @@ public class UserResources implements Serializable {
     private Long id;
     @OneToOne
     private User user;
-    @OneToOne(  cascade = CascadeType.REMOVE )
+    @OneToOne
     private Resource resource;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
