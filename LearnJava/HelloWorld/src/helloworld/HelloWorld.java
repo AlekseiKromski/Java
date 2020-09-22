@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.test.*;
 package helloworld;
 
 /**
@@ -11,6 +12,7 @@ package helloworld;
  */
 public class HelloWorld {
 
+    //Приметивы 
     byte b = 0; //1 byte(256) -128 to 138
     short s = 0; //2 byte(~65000) -32 to 32
     int i = 0; //4 byte(2**31) 
@@ -18,14 +20,15 @@ public class HelloWorld {
     float f = (float) 12.33; //4 byte Приводим double к значению float
     double d = 123.123; //8 byte
     boolean bool = true;
-    char c;
+    char c = '4'; //Char испльзует '', а не ""
     
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        HelloWorld hw = new HelloWorld();
+        Person p = new Person();
         
     }
     
