@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import com.test.*;
 package helloworld;
+
+
+
+
 
 /**
  *
@@ -28,7 +31,7 @@ public class HelloWorld {
      */
     public static void main(String[] args) {
         HelloWorld hw = new HelloWorld();
-        Person p = new Person();
+        com.test.person.Person p = new com.test.person.Person();
         
     }
     
