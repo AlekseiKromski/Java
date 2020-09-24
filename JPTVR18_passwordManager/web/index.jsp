@@ -23,12 +23,7 @@
                 <li><a href="<c:url value='/logout'/>">Выйти из системы</a></li>
                 <li><a href="<c:url value='/showFormCreateUser'/>">Добавить пользователя</a></li>
             </ul>
-            <hr>
-            <ul>
-                <li><a href="<c:url value='/showFormAddResource'/>">Добавить новый ресурс</a></li>
-                <li><a href="<c:url value='/listResource'/>">Список ресурсов</a></li>
-                <li><a href="<c:url value='/listUser'/>">Список пользователей</a></li>
-            </ul>
+                <%@include file="menu/browse_menu.jsp" %>
         </div>
     </div>
 </div>
