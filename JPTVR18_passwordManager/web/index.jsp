@@ -19,15 +19,15 @@
             </p>
             <h1>Hello to password manager</h1>
             <ul>
-                <li><a href="showFormLogin">Войти в систему</a></li>
-                <li><a href="logout">Выйти из системы</a></li>
-                <li><a href="showFormCreateUser">Добавить пользователя</a></li>
+                <li><a href="<c:url value='/showFormLogin'/>">Войти в систему</a></li>
+                <li><a href="<c:url value='/logout'/>">Выйти из системы</a></li>
+                <li><a href="<c:url value='/showFormCreateUser'/>">Добавить пользователя</a></li>
             </ul>
             <hr>
             <ul>
-                <li><a href="showFormAddResource">Добавить новый ресурс</a></li>
-                <li><a href="listResource">Список ресурсов</a></li>
-                <li><a href="listUser">Список пользователей</a></li>
+                <li><a href="<c:url value='/showFormAddResource'/>">Добавить новый ресурс</a></li>
+                <li><a href="<c:url value='/listResource'/>">Список ресурсов</a></li>
+                <li><a href="<c:url value='/listUser'/>">Список пользователей</a></li>
             </ul>
         </div>
     </div>
