@@ -9,12 +9,41 @@ and open the template in the editor.
 */
 .main-block{
     background: white;
-    border-radius: 10px 10px;
+    border-radius: 10px 10px;  
 }
 .block{
     min-height: 300px;
+
 }
 body{
-    background: linear-gradient(45deg, #1b00ff, #ff0023);
+    background: linear-gradient(45deg, #1b00ffd4, #00ff5ab0);
     background-size: cover;
+    height: 100vh;
+}
+.box-to-advant{
+    background: white;
+    border-radius: 10px 10px;  
+}
+.button{
+    border: 1px solid black;
+    transition: 0.5s;
+}
+.button:hover{
+    background: black;
+    color: white;
+    transition: 0.5s;
+}
+svg{
+    transition: 0.5s;
+}
+svg:hover{
+    color: #00ff5ab0;
+    transition: 0.5s;
+
+}
+.bg-light{
+    background-color: #f8f9fae0!important;
+}
+.error-message{
+    color:red;
 }

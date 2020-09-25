@@ -64,7 +64,6 @@ public class WebController extends HttpServlet {
         String path = request.getServletPath();
         switch(path){
             case "/showFormAddResource":
-                request.setAttribute("info", "your resource has been created");
                 request.getRequestDispatcher("/showFormAddResource.jsp").forward(request, response);
                 break;
             case "/createResource":
