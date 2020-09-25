@@ -45,6 +45,7 @@
         </div>
     </div>
 </div>
+
 <div class="container-fluid">
     <div class="row justify-content-center ">
         <div id="box1" class="col-2 shadow box-to-advant text-center p-2">
