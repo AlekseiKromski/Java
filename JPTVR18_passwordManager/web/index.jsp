@@ -33,7 +33,9 @@
                 <div class="row justify-content-center main-block shadow p-3">
                     <div class="col-5 p-5 align-self-center">
                         <h2>Hello to password manager service</h2>
-                        <button class="btn button">Register account</button>
+                        <c:if test = "${loginOn == false}">
+                            <a href="<c:url value='/showFormCreateUser'/>" class="btn button">Register account</a>
+                        </c:if>
                     </div>
                     <div class="col-3 pl-3 p-2 align-self-center" style="border-left: 2px solid black;">
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
