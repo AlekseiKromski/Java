@@ -15,5 +15,30 @@ $(document).ready(function(){
         "fadeSpeed": 1000,
         "autoplay": true
     });
-    console.log('ok');
+
+    //Make arr
+    let shoes_arr = [];
+    for(let i = 1; i <= 8; i++){
+        shoes_arr.push("#shoes-item-" + i);
+    }
+
+
+
+    shoes_arr.forEach(e => {
+        $(e).on("mouseenter", () => {
+            
+            $(e).addClass("shadow-lg")
+            $(e).css({"height" : "300px"})
+            $(e + "-button").show();
+            
+
+            $(e).on("mouseleave", () => {
+                $(e).removeClass("shadow-lg");
+                $(e + "-button").hide();
+                $(e).css({"height" : "250px"})
+                
+            });
+        });
+        
+    })
 })

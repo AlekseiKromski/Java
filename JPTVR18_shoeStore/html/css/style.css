@@ -135,14 +135,20 @@ hr{
 .top-shoes{
     margin-top: 8%;
     margin-bottom: 8%;
+    
 }
-
+.top-shoes button{
+    width: 80%;
+}
 .top-shoes h2{
     color: Black;
     font-size: 18px;
 }
 .shoes-item{
     border-radius: 10px;
+    height: 250px;
+    transition: height 1s linear;
+    transition: 0.5s;
 }
 .shoes-item img{
     border-radius: 10px;
@@ -252,6 +258,7 @@ hr{
 }
 .form-block{
     margin-top: 8%;
+    margin-bottom: 8%;
 }
 .form-control{
     border: 1px solid #282828;
@@ -280,4 +287,56 @@ hr{
 }
 .reclam{
     background-image: url(../img/beckham-adidas-2d0081129_1.png);
+    
+}
+.reclam h1{
+    font-weight: bold;
+    background: white;
+    padding: 10%;
+    text-align: center;
+}
+.reclam button{
+    width: 100%;
+    background: #282828;
+    border: 0px;
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+    font-size: 30px;
+}
+.reclam button:hover{
+    background: #FFD600;
+    transition: 0.5s;
+}
+.footer{
+    height: 150px;
+    background: #282828;
+}
+.footer ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.footer ul li{
+    display: inline;
+}
+.footer ul li a{
+    font-family: Raleway; 
+    font-size: 25px;
+    color: white;
+    font-weight: 300;
+    text-decoration: none;
+    background-image: linear-gradient(89.88deg, #001AFF -34.2%, #001AFF -34.18%, #00FFC2 121.91%);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+.footer ul li a:hover{
+    background-size: 100% 2px;
+}
+
+/* JS */
+.shoes-item button{
+    display: none;
 }
