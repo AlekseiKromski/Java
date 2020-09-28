@@ -172,17 +172,26 @@ hr{
     width: 465px;
     height: 68px;
     background: #FFFFFF;
+    transition: 0.5s;
+}
+.join-link:hover{
+    transition: 0.5s;
+    background: #282828;
+    color: white;
 }
 .shoes-item-2{
     margin-bottom: 8%;
 }
+.top-shoes-2 h1{
+    font-size: 25px;
+}
 .top-shoes-2 h2{
     font-style: italic;
     font-weight: normal;
-    font-size: 22px;
+    font-size: 18px;
 }
 .top-shoes-2 p{
-    font-size: 18px;
+    font-size: 15px;
 }
 .shoes-item-2{
     border-radius: 0px 0px 10px 10px;
@@ -196,11 +205,12 @@ hr{
     border-radius: 0px 0px 0px 10px;
 }
 .button-buy{
-    width: 40%;
+    width: 30%;
+    padding: 1%;
     background: white;
     border: 2px solid #282828;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 18px;
     transition: 0.5s;
 }
 .button-buy:focus{
@@ -213,4 +223,61 @@ hr{
 }
 .img-round-2{
     border-radius: 0px 0px 10px 0px;
+}
+.review-block{
+    backdrop-filter: blur(112px);
+    background-attachment: fixed;
+    height: 512px;
+}
+.review-block h1{
+    color: white;
+    font-weight: bold;
+}
+.review-block h2{
+    color: white;
+    font-size: 22px;
+}
+.review-block p{
+    color: white;
+    font-size: 18px;
+}
+.review-1{
+    background: linear-gradient(265.93deg, #FFD600 0%, #FF0000 131.52%);
+}
+.review-2{
+    background: linear-gradient(265.93deg, rgb(98, 0, 255) 0%, rgb(255, 0, 0) 131.52%);
+}
+.review-3{
+    background: linear-gradient(84.26deg, #0038FF 0%, #00FFB2 100%);
+}
+.form-block{
+    margin-top: 8%;
+}
+.form-control{
+    border: 1px solid #282828;
+}
+.form-control:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #282828;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #ffffff00;
+}
+.btn-dark-personal{
+    width: 100%;
+    padding: 1%;
+    background: white;
+    border: 1px solid #282828;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: 0.5s;
+    font-weight: bold;
+}
+.btn-dark-personal:hover{
+    background: #282828;
+    color:white;
+    transition: 0.5s;
+}
+.reclam{
+    background-image: url(../img/beckham-adidas-2d0081129_1.png);
 }
