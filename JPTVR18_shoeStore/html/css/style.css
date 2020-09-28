@@ -1,0 +1,40 @@
+body{
+    font-family: Raleway; 
+    font-weight: 300;
+}
+h1{
+    font-family: Raleway; 
+    font-size: 38px;
+    color: white;
+    margin: 0;
+    font-weight: 300;
+}
+.navigation{
+    height: 100px;
+    background: #282828;
+    position: fixed;
+    top: 0;
+}
+.navigation ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navigation ul li{
+    display: inline;
+}
+.navigation ul li a{
+    font-family: Raleway; 
+    font-size: 30px;
+    color: white;
+    font-weight: 300;
+    text-decoration: none;
+    background-image: linear-gradient(89.88deg, #001AFF -34.2%, #001AFF -34.18%, #00FFC2 121.91%);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+.navigation ul li a:hover{
+    background-size: 100% 2px;
+}
