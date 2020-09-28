@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 24, 2020, 3:03:15 PM
+    Author     : pupil
+*/
+.main-block{
+    background: white;
+    border-radius: 10px 10px;  
+}
+.block{
+    min-height: 300px;
+
+}
+body{
+    background: linear-gradient(45deg, #1b00ffd4, #00ff5ab0);
+    background-size: cover;
+    height: 100vh;
+}
+.box-to-advant{
+    background: white;
+    border-radius: 10px 10px; 
+    transition: 0.5s;
+}
+.button{
+    border: 1px solid black;
+    transition: 0.5s;
+}
+.button:hover{
+    background: black;
+    color: white;
+    transition: 0.5s;
+}
+svg{
+    transition: 0.5s;
+}
+svg:hover{
+    transition: 0.5s;
+}
+.bg-light{
+    background-color: #f8f9fae0!important;
+}
+.error-message{
+    color:red;
+}
