@@ -287,7 +287,9 @@ hr{
 }
 .reclam{
     background-image: url(../img/beckham-adidas-2d0081129_1.png);
-    
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: left;
 }
 .reclam h1{
     font-weight: bold;
