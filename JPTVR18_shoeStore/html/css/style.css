@@ -1,3 +1,15 @@
+@font-face {
+    font-family: "MariadPro-bl";
+    src: url(../fonts/MyriadPro-bl.otf) format("truetype");
+}
+@font-face{
+    font-family: "MariadPro-it";
+    src: url(../fonts/MyriadPro-It.otf) format("truetype");   
+}
+@font-face{
+    font-family: "MariadPro-re";
+    src: url(../fonts/MyriadPro-re.otf) format("truetype");   
+}
 body{
     font-family: Raleway; 
     font-weight: 300;
@@ -9,11 +21,25 @@ h1{
     margin: 0;
     font-weight: 300;
 }
+a{
+    color: white;
+}
+a:hover{
+    text-decoration: none;
+    color: white;
+}
+hr{
+    border: 2px solid rgba(40, 40, 40, 0.21);
+}
+.img{
+    width: 100%;
+}
 .navigation{
     height: 100px;
     background: #282828;
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 .navigation ul{
     list-style: none;
@@ -37,4 +63,77 @@ h1{
 }
 .navigation ul li a:hover{
     background-size: 100% 2px;
+}
+.slider{
+    margin-top: 8%;
+}
+.slick-slide:focus{
+    outline:none;
+}
+.slider-element h1{
+    font-family: "MariadPro-bl";
+    font-weight: bold;
+    color: Black;
+    font-size: 30px;
+}
+.slider-element h2{
+    font-family: "MariadPro-it";
+    color: Black;
+    font-size: 18px;
+}
+.slider-element p{
+    font-family: "MariadPro-re";
+    color: Black;
+    font-size: 15px;
+}
+.slick-dots{
+    display: flex;
+	justify-content: center;
+	margin: 0;
+	padding: 1rem 0;
+	list-style-type: none;
+	
+}
+.slick-dots li {
+    margin: 0 0.25rem;
+}
+.slick-dots li button:focus {
+    outline: none;
+}
+.slick-dots button {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    border: none;
+    border-radius: 100%;
+    background-color: white;
+    text-indent: -9999px;
+    border: 1px solid #282828;
+}
+.slick-dots li.slick-active button {
+    background-color: #282828 ;
+}
+.about-us{
+    margin-top: 5%;
+}
+.about-us h1{
+    font-family: Raleway; 
+    font-size: 30px;
+    color: black;
+    margin: 0;
+    font-weight: 400;  
+}
+.about-us h2{
+    font-family: Raleway; 
+    font-size: 22px;
+    color: black;
+    font-weight: 400;  
+}
+.about-us p{
+    font-family: Raleway; 
+    width: 90%;
+    font-size: 15px;
+    color: black;
+    font-weight: 400;  
 }
