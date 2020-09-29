@@ -144,9 +144,16 @@ hr{
     color: Black;
     font-size: 18px;
 }
+.top-shoes p{
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: .5rem!important;
+    margin-bottom: .5rem!important;
+}
 .shoes-item{
     border-radius: 10px;
-    height: 250px;
+    height: 100%;
     transition: height 1s linear;
     transition: 0.5s;
 }
@@ -338,7 +345,3 @@ hr{
     background-size: 100% 2px;
 }
 
-/* JS */
-.shoes-item button{
-    display: none;
-}

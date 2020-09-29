@@ -21,22 +21,17 @@ $(document).ready(function(){
     for(let i = 1; i <= 8; i++){
         shoes_arr.push("#shoes-item-" + i);
     }
-
-
-
+    
     shoes_arr.forEach(e => {
         $(e).on("mouseenter", () => {
-            
             $(e).addClass("shadow-lg")
-            $(e).css({"height" : "300px"})
-            $(e + "-button").show();
-            
+            $(e).addClass("col-3")
+            $(e).removeClass("col-2")
 
             $(e).on("mouseleave", () => {
                 $(e).removeClass("shadow-lg");
-                $(e + "-button").hide();
-                $(e).css({"height" : "250px"})
-                
+                $(e).addClass("col-2")
+                $(e).removeClass("col-3")
             });
         });
         
