@@ -5,7 +5,9 @@
  */
 package servlet;
 
+import entity.Message;
 import entity.Product;
+import facade.MessageFacade;
 import facade.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,11 +30,15 @@ import javax.servlet.http.HttpServletResponse;
     "/about",
     "/shoes",
     "/contact",
+    "/sendMessage"
 })
 public class PageController extends HttpServlet {
 
     @EJB
     ProductFacade productFacade = new ProductFacade();
+    
+    @EJB
+    MessageFacade messageFacade = new MessageFacade();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,6 +55,19 @@ public class PageController extends HttpServlet {
         String path = request.getServletPath();
         switch(path){
             case "/home":
+                //Check our parameter
+                String send = request.getParameter("send");
+                if(send != null){
+                    if(send.equals("success")){
+                        request.setAttribute("send", "success");
+                    }else if(send.equals("error")){
+                        request.setAttribute("send", null);
+                    }else{
+                        request.setAttribute("send", null);
+                    }
+                }
+                
+                
                 // _2 - prefix limit
                 List<Product> products_8 = this.productFacade.findByLimit(8);
                 ArrayList <Product> product1 = new ArrayList<>();
@@ -87,6 +106,16 @@ public class PageController extends HttpServlet {
             case "/shoes":
                 
                 request.getRequestDispatcher("shoes.jsp").forward(request, response);
+                break;
+            //Post
+            case "/sendMessage":
+                String email = request.getParameter("email");
+                String message = request.getParameter("message");
+                this.messageFacade.create(new Message(email, message));
+                //Something checks
+                //.....
+                
+                response.sendRedirect(request.getContextPath() + "/home?send=success");
                 break;
         }
     }
