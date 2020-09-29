@@ -1,0 +1,347 @@
+@font-face {
+    font-family: "MariadPro-bl";
+    src: url(../fonts/MyriadPro-bl.otf) format("truetype");
+}
+@font-face{
+    font-family: "MariadPro-it";
+    src: url(../fonts/MyriadPro-It.otf) format("truetype");   
+}
+@font-face{
+    font-family: "MariadPro-re";
+    src: url(../fonts/MyriadPro-re.otf) format("truetype");   
+}
+body{
+    font-family: Raleway; 
+    font-weight: 300;
+}
+h1{
+    font-family: Raleway; 
+    font-size: 30px;
+    color: #282828;
+    margin: 0;
+    font-weight: 400;
+}
+a{
+    color: white;
+}
+a:hover{
+    text-decoration: none;
+    color: white;
+}
+hr{
+    border: 2px solid rgba(40, 40, 40, 0.21);
+}
+.img{
+    width: 100%;
+}
+.navigation{
+    height: 80px;
+    background: #282828;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+.navigation ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navigation ul li{
+    display: inline;
+}
+.navigation ul li a{
+    font-family: Raleway; 
+    font-size: 25px;
+    color: white;
+    font-weight: 300;
+    text-decoration: none;
+    background-image: linear-gradient(89.88deg, #001AFF -34.2%, #001AFF -34.18%, #00FFC2 121.91%);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+.navigation ul li a:hover{
+    background-size: 100% 2px;
+}
+.slider{
+    margin-top: 8%;
+}
+.slick-slide:focus{
+    outline:none;
+}
+.slider-element h1{
+    font-family: "MariadPro-bl";
+    font-weight: bold;
+}
+.slider-element h2{
+    font-family: "MariadPro-it";
+    color: Black;
+    font-size: 18px;
+}
+.slider-element p{
+    font-family: "MariadPro-re";
+    color: Black;
+    font-size: 15px;
+}
+.slick-dots{
+    display: flex;
+	justify-content: center;
+	margin: 0;
+	padding: 1rem 0;
+	list-style-type: none;
+	
+}
+.slick-dots li {
+    margin: 0 0.25rem;
+}
+.slick-dots li button:focus {
+    outline: none;
+}
+.slick-dots button {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+    border: none;
+    border-radius: 100%;
+    background-color: white;
+    text-indent: -9999px;
+    border: 1px solid #282828;
+}
+.slick-dots li.slick-active button {
+    background-color: #282828 ;
+}
+.about-us{
+    margin-top: 5%;
+}
+.about-us h1{
+    margin: 0;
+    font-weight: 400;  
+}
+.about-us h2{
+    font-family: Raleway; 
+    font-size: 22px;
+    color: #282828;
+    font-weight: 400;  
+}
+.about-us p{
+    font-family: Raleway; 
+    width: 90%;
+    font-size: 15px;
+    color: #282828;
+    font-weight: 400;  
+}
+.top-shoes{
+    margin-top: 8%;
+    margin-bottom: 8%;
+    
+}
+.top-shoes button{
+    width: 80%;
+}
+.top-shoes h2{
+    color: Black;
+    font-size: 18px;
+}
+.top-shoes p{
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: .5rem!important;
+    margin-bottom: .5rem!important;
+}
+.shoes-item{
+    border-radius: 10px;
+    height: 100%;
+    transition: height 1s linear;
+    transition: 0.5s;
+}
+.shoes-item img{
+    border-radius: 10px;
+}
+.currency{
+    color: Black;
+    font-size: 18px;
+    font-weight: bold;
+}
+.join{
+    background: linear-gradient(84.26deg, #0038FF 0%, #00FFB2 100%);
+    height: 222px;
+    margin-bottom: 8%;
+}
+.join h1{
+    font-weight: bold;
+    color: #FFFFFF;
+    
+}
+.join a{
+    font-size: 30px;
+    font-weight: bold;
+    color:#282828;
+
+}
+.join-link{
+    width: 465px;
+    height: 68px;
+    background: #FFFFFF;
+    transition: 0.5s;
+}
+.join-link:hover{
+    transition: 0.5s;
+    background: #282828;
+    color: white;
+}
+.shoes-item-2{
+    margin-bottom: 8%;
+}
+.top-shoes-2 h1{
+    font-size: 25px;
+}
+.top-shoes-2 h2{
+    font-style: italic;
+    font-weight: normal;
+    font-size: 18px;
+}
+.top-shoes-2 p{
+    font-size: 15px;
+}
+.shoes-item-2{
+    border-radius: 0px 0px 10px 10px;
+}
+.currency-2{
+    color: #282828;
+    font-size: 30px;
+    font-weight: bold;
+}
+.img-round{
+    border-radius: 0px 0px 0px 10px;
+}
+.button-buy{
+    width: 30%;
+    padding: 1%;
+    background: white;
+    border: 2px solid #282828;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: 0.5s;
+}
+.button-buy:focus{
+    outline: none;
+}
+.button-buy:hover{
+    background: #282828;
+    color:white;
+    transition: 0.5s;
+}
+.img-round-2{
+    border-radius: 0px 0px 10px 0px;
+}
+.review-block{
+    backdrop-filter: blur(112px);
+    background-attachment: fixed;
+    height: 512px;
+}
+.review-block h1{
+    color: white;
+    font-weight: bold;
+}
+.review-block h2{
+    color: white;
+    font-size: 22px;
+}
+.review-block p{
+    color: white;
+    font-size: 18px;
+}
+.review-1{
+    background: linear-gradient(265.93deg, #FFD600 0%, #FF0000 131.52%);
+}
+.review-2{
+    background: linear-gradient(265.93deg, rgb(98, 0, 255) 0%, rgb(255, 0, 0) 131.52%);
+}
+.review-3{
+    background: linear-gradient(84.26deg, #0038FF 0%, #00FFB2 100%);
+}
+.form-block{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.form-control{
+    border: 1px solid #282828;
+}
+.form-control:focus{
+    color: #495057;
+    background-color: #fff;
+    border-color: #282828;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #ffffff00;
+}
+.btn-dark-personal{
+    width: 100%;
+    padding: 1%;
+    background: white;
+    border: 1px solid #282828;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: 0.5s;
+    font-weight: bold;
+}
+.btn-dark-personal:hover{
+    background: #282828;
+    color:white;
+    transition: 0.5s;
+}
+.reclam{
+    background-image: url(../img/beckham-adidas-2d0081129_1.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: left;
+}
+.reclam h1{
+    font-weight: bold;
+    background: white;
+    padding: 10%;
+    text-align: center;
+}
+.reclam button{
+    width: 100%;
+    background: #282828;
+    border: 0px;
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+    font-size: 30px;
+}
+.reclam button:hover{
+    background: #FFD600;
+    transition: 0.5s;
+}
+.footer{
+    height: 150px;
+    background: #282828;
+}
+.footer ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.footer ul li{
+    display: inline;
+}
+.footer ul li a{
+    font-family: Raleway; 
+    font-size: 25px;
+    color: white;
+    font-weight: 300;
+    text-decoration: none;
+    background-image: linear-gradient(89.88deg, #001AFF -34.2%, #001AFF -34.18%, #00FFC2 121.91%);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+.footer ul li a:hover{
+    background-size: 100% 2px;
+}
+
