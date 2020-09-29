@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import session.UserFacade;
+import utils.MakeHash;
 
 /**
  *
@@ -49,12 +50,16 @@ public class LoginController extends HttpServlet {
             case "/login":
                 String login = request.getParameter("login");
                 String password = request.getParameter("password");
+                
+                MakeHash makeHash = new MakeHash();
+                String encode_password = makeHash.create(password,makeHash.createSalts());
                 User user = this.userFacade.findByLogin(login);
+                
                 if(user == null){
                     request.setAttribute("info", "login or password is wrong");
                     request.getRequestDispatcher("/showFormLogin").forward(request, response);
                 }else{
-                    if(user.equals(user.getPassword())){
+                    if(!encode_password.equals(user.getPassword())){
                         request.setAttribute("info", "login or password is wrong");
                         request.getRequestDispatcher("/showFormLogin").forward(request, response);
                     }else{
@@ -83,7 +88,10 @@ public class LoginController extends HttpServlet {
             case "/createUser":
                 String login_user = request.getParameter("login");
                 String password_user = request.getParameter("password");
-                User user_for_db = new User(login_user, password_user);
+                
+                MakeHash makeHase = new MakeHash();
+                String encoding_password = makeHase.create(password_user, makeHase.createSalts());
+                User user_for_db = new User(login_user, encoding_password);
                 this.userFacade.create(user_for_db);
                 request.setAttribute("info", "your user has been created");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
