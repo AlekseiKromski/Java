@@ -5,6 +5,7 @@
  */
 package servlets;
 
+
 import entity.Resource;
 import entity.User;
 import entity.UserResources;
@@ -60,6 +61,11 @@ public class WebController extends HttpServlet {
         if(user == null){
             request.setAttribute("info", "No permission");
             request.getRequestDispatcher("/showFormLogin").forward(request, response);
+        }
+        UserManager userManager = new UserManager();
+        if(!userManager.isRole(user,"USER")){
+            request.setAttribute("info", "No permission");
+            request.getRequestDispatcher("/index").forward(request, response);
         }
         String path = request.getServletPath();
         switch(path){

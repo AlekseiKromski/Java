@@ -5,7 +5,9 @@
  */
 package servlets;
 
+import entity.Role;
 import entity.User;
+import entity.UserRoles;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -15,19 +17,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import session.RoleFacade;
 import session.UserFacade;
+import session.UserRolesFacade;
 import utils.MakeHash;
 
 /**
  *
  * @author pupil
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/showFormLogin","/login", "/logout", "/showFormCreateUser", "/createUser"})
+@WebServlet(name = "LoginController",loadOnStartup = 1 , urlPatterns = {"/showFormLogin","/login", "/logout", "/showFormCreateUser", "/createUser"})
 public class LoginController extends HttpServlet {
 
     
     @EJB
     private UserFacade userFacade = new UserFacade();
+    @EJB
+    private RoleFacade roleFacade = new RoleFacade();
+    @EJB
+    private UserRolesFacade urf = new UserRolesFacade();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,6 +45,9 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -59,7 +70,7 @@ public class LoginController extends HttpServlet {
                     request.setAttribute("info", "login or password is wrong");
                     request.getRequestDispatcher("/showFormLogin").forward(request, response);
                 }else{
-                    if(!encode_password.equals(user.getPassword())){
+                    if(encode_password.equals(user.getPassword())){
                         request.setAttribute("info", "login or password is wrong");
                         request.getRequestDispatcher("/showFormLogin").forward(request, response);
                     }else{
@@ -93,9 +104,35 @@ public class LoginController extends HttpServlet {
                 String encoding_password = makeHase.create(password_user, makeHase.createSalts());
                 User user_for_db = new User(login_user, encoding_password);
                 this.userFacade.create(user_for_db);
+                Role role = roleFacade.getRole("USER");
+                UserRoles ur = new UserRoles(user_for_db, role);
+                this.urf.create(ur);
                 request.setAttribute("info", "your user has been created");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
+        }
+    }
+
+    @Override
+    public void init() throws ServletException {
+        int count_role = this.roleFacade.count();
+        if(count_role <= 0){
+            Role role_user = new Role("USER");        
+            Role role_admin = new Role("ADMIN");
+            this.roleFacade.create(role_user);            
+            this.roleFacade.create(role_admin);
+            
+            //Make user
+            MakeHash mh = new MakeHash();
+            String pass = mh.create("admin", mh.createSalts());
+            User admin = new User("admin",pass);
+            this.userFacade.create(admin);
+            
+            //Make user roles 
+            UserRoles ur = new UserRoles();
+            ur.setUser(admin);
+            ur.setRole(role_user);
+            this.urf.create(ur);
         }
     }
 
