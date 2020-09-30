@@ -6,8 +6,11 @@
 package servlet;
 
 import entity.Message;
+import entity.OrderProduct;
 import entity.Product;
 import facade.MessageFacade;
+import facade.OrderProductFacade;
+import facade.OrderProductFacade;
 import facade.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +34,9 @@ import javax.servlet.http.HttpServletResponse;
     "/shoes",
     "/contact",
     "/sendMessage",
-    "/detail"
+    "/detail",
+    "/order",
+    "/orderProduct"
 })
 public class PageController extends HttpServlet {
 
@@ -40,6 +45,9 @@ public class PageController extends HttpServlet {
     
     @EJB
     MessageFacade messageFacade = new MessageFacade();
+    
+    @EJB
+    OrderProductFacade orderProductFacade = new OrderProductFacade();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -65,6 +73,16 @@ public class PageController extends HttpServlet {
                         request.setAttribute("send", false);
                     }else{
                         request.setAttribute("send", null);
+                    }
+                }
+                String order_notification = request.getParameter("order");
+                if(order_notification != null){
+                    if(order_notification.equals("success")){
+                        request.setAttribute("order", true);
+                    }else if(order_notification.equals("error")){
+                        request.setAttribute("order", false);
+                    }else{
+                        request.setAttribute("order", null);
                     }
                 }
                 
@@ -114,6 +132,12 @@ public class PageController extends HttpServlet {
                 request.setAttribute("product", p);
                 request.getRequestDispatcher("details.jsp").forward(request, response);
                 break;
+            case "/order":
+                id = request.getParameter("id");
+                p = this.productFacade.find(new Long(id));
+                request.setAttribute("product", p);
+                request.getRequestDispatcher("order.jsp").forward(request, response);
+                break;
             //Post
             case "/sendMessage":
                 String email = request.getParameter("email");
@@ -123,6 +147,29 @@ public class PageController extends HttpServlet {
                 //.....
                 
                 response.sendRedirect(request.getContextPath() + "/home?send=success");
+                break;
+            case "/orderProduct":
+                //Get ordered product 
+                id = request.getParameter("id");
+                p = this.productFacade.find(new Long(id));
+                
+                //Get post user data
+                String first_name = request.getParameter("firstName");
+                String second_name = request.getParameter("secondName");
+                String name = first_name + " " + second_name;
+                
+                email = request.getParameter("email");
+                String phone = request.getParameter("phone");
+                String address = request.getParameter("address");
+                
+                //Make order object
+                OrderProduct orderProduct = new OrderProduct(p,address, email, phone, name);
+                
+                //Push order to db
+                this.orderProductFacade.create(orderProduct);
+                
+                //Make success notification and redirect to /home
+                response.sendRedirect(request.getContextPath() + "/home?order=success");
                 break;
         }
     }

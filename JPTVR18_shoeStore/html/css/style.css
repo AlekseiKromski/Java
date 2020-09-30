@@ -359,3 +359,17 @@ hr{
 .detail h2{
     font-style: italic;
 }
+.order{
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+.order h1{
+    font-size: 20px;
+}
+.order h2{
+    font-size: 18px;
+}
+.order form label {
+    font-weight: bold;
+    font-size: 17px;
+}

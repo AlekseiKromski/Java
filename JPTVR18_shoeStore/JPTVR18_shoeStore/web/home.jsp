@@ -11,6 +11,17 @@
             </div>
     </div>
 </c:if>
+<c:if test = "${order}">
+    <div class="container-fluid notification">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="alert alert-success" role="alert">
+                        Your order has been created
+                    </div>
+                </div>
+            </div>
+    </div>
+</c:if>
 <!-- Slider -->
     <div class="single-item slider">
         <div class="container-fluid">

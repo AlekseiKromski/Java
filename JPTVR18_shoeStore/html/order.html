@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slick store</title>
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Slick -->
+    <link rel="stylesheet" href="css/slick.css">
+    <!-- Css links -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation menu -->
+    <div class="container-fluid navigation shadow">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-6">
+                <h1><a href="">Slick store</a></h1>
+            </div>
+            <div class="col-4">
+                <ul>
+                    <li class="mr-4"><a href="index.html">Home</a></li>
+                    <li class="mr-4"><a href="shoes.html">Shoes</a></li>
+                    <li class="mr-4"><a href="about_us.html">About us</a></li>
+                    <li class="mr-4"><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid order">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h1>Order: <b>RACER TR 2.0</b></h1>
+                <hr>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-3">
+                        <img src="img/shoes/Nizza_Platform_Shoes_White_FW0265_01_standard.jpg" class="img" alt="">
+                    </div>
+                    <div class="col-9">
+                        <h1>
+                            RACER TR 2.0 <b>$65</b>
+                        </h1>
+                        <h2 class="mt-2">
+                            MAN / SHOE
+                        </h2>
+                    </div>
+                </div>
+
+                <form action="/orederProduct?id=1" method="post" class="mt-5 p-5 rounded shadow">
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleInputfirstName1">First name: </label>
+                            <input type="text" class="form-control" id="exampleInputfirstName1" aria-describedby="firstNameHelp" placeholder="Enter first name">
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputsecondName">Second name: </label>
+                            <input type="text" class="form-control" id="exampleInputsecondName" aria-describedby="secondName" placeholder="Enter second name">
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputsecondEmail">Email: </label>
+                            <input type="email" class="form-control" id="exampleInputsecondEmail" aria-describedby="email" placeholder="Enter email">
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="phone">Phone: </label>
+                            <input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter phone">
+                        </div>
+                        <div class="col">
+                            <label for="address">Addres: </label>
+                            <input type="text" class="form-control" id="address" aria-describedby="address" placeholder="Enter address">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark-personal">ORDER</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join -->
+    <div class="container-fluid join">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-4">
+                <h1>JOIN OUR CREATORS CLUB & GET 15%</h1>
+            </div>
+            <div class="col-1"></div>
+            <div class="3">
+                <a href="" class="join-link py-3 px-5">SIGN UP FOR FREE</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <div class="container-fluid form-block">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-8 p-0">
+                <div class="container-fluid p-0">
+                    <div class="row justify-content-center align-items-center h-100 p-0">
+                        <div class="col-5 p-0">
+                            <h1>Quastions ?</h1>
+                            <form action="" class="form mt-2">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                  </div>
+                                  <div class="form-group">
+                                    <textarea name="textarea" id="textarea" style="width: 100%;" rows="5" class="form-control" placeholder="Enter message"></textarea>
+                                  </div>
+                                  <button type="submit" class="btn btn-dark-personal">SEND</button>
+                            </form>
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-5 p-0 reclam">
+                            <div class="row h-100 align-items-center justify-content-center">
+                                <div class="col-8 p-5">
+                                    <h1>
+                                        SALE - 15%
+                                        JOIN OUR CREATORS CLUB
+                                    </h1>
+                                    <button>JOIN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
