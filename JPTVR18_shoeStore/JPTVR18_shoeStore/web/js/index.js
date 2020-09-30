@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     let path = window.location.href;
     if(path.lastIndexOf("shoes") == -1){
         $('.single-item').slick({
@@ -65,6 +66,6 @@ $(document).ready(function(){
     //Hide notification element before 5000 seconds
     setTimeout(() => {
         $(".notification").hide();
-    }, 5000)
+    }, 5000);
    
 })

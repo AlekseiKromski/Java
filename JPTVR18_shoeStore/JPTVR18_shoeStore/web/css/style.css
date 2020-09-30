@@ -70,6 +70,12 @@ hr{
 .navigation ul li a:hover{
     background-size: 100% 2px;
 }
+.notification{
+    position: fixed;
+    top: 105px;
+    z-index: 1;
+    transition: 0.5s;
+}
 .slider{
     margin-top: 8%;
 }
