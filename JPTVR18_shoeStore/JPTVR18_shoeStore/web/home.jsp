@@ -127,10 +127,10 @@
                         <div class="row justify-content-center mt-5">
                             <c:forEach var="product" items="${products}">
                                 <div class="col-2 mx-4 p-0 shadow shoes-item mt-2" id="shoes-item-${product.id}">
-                                    <img src="img/shoes/Ultraboost_20_Shoes_Black_FX3602_01_standard.jpg" alt="" class="img">
+                                    <img src="${product.img}" alt="" class="img">
                                     <h2 class="my-2">${product.title} <span class="currency ml-2">$${product.price}</span></h2>
                                     <p>${product.category}</p>
-                                    <button class="button-buy mb-2" id="shoes-item-${product.id}-button">BUY</button>
+                                    <a href="detail?id=${product.id}"><button class="button-buy mb-2" id="shoes-item-${product.id}-button">BUY</button></a> 
                                 </div>
                             </c:forEach> 
                         </div>
@@ -162,7 +162,7 @@
                         <c:if test = "${product.align == 'left'}">
                             <div class="row justify-content-center align-items-center h-100 shadow p-0 shoes-item-2">
                                 <div class="col-3 p-0">
-                                    <img src="img/3-Stripes_Pants_Red_GD9958_21_model.jpg" class="img img-round" alt="">
+                                    <img src="${product.img}" class="img img-round" alt="">
                                 </div>
                                 <div class="col-1"></div>
                                 <div class="col-7 p-0">
@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="col-1"></div>
                                 <div class="col-3 p-0">
-                                    <img src="img/NMD_R1_Shoes_Blue_FV1734_010_hover_standard.jpg" class="img img-round-2" alt="">
+                                    <img src="${product.img}" class="img img-round-2" alt="">
                                 </div>
                             </div>
                         </c:if>

@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -30,6 +31,7 @@ public class Product implements Serializable {
     private String img;
     private int price;
     private String align;
+    @OneToOne
     private User user;
 
     public Product() {

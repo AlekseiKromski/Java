@@ -21,6 +21,12 @@ h1{
     margin: 0;
     font-weight: 400;
 }
+h2{
+    font-family: Raleway; 
+    font-size: 22px;
+    color: #282828;
+    font-weight: 400;  
+}
 a{
     color: white;
 }
@@ -34,7 +40,6 @@ hr{
 .img{
     width: 100%;
 }
-
 .navigation{
     height: 80px;
     background: #282828;
@@ -64,11 +69,6 @@ hr{
 }
 .navigation ul li a:hover{
     background-size: 100% 2px;
-}
-.notification{
-    position: fixed;
-    z-index: 1;
-    top: 90px;
 }
 .slider{
     margin-top: 8%;
@@ -231,6 +231,7 @@ hr{
     border-radius: 10px;
     font-size: 18px;
     transition: 0.5s;
+    text-transform: uppercase;
 }
 .button-buy:focus{
     outline: none;
@@ -351,3 +352,10 @@ hr{
     background-size: 100% 2px;
 }
 
+.detail{
+    margin-top: 8%;
+    
+}
+.detail h2{
+    font-style: italic;
+}

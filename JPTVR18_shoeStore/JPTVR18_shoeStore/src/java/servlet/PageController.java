@@ -30,7 +30,8 @@ import javax.servlet.http.HttpServletResponse;
     "/about",
     "/shoes",
     "/contact",
-    "/sendMessage"
+    "/sendMessage",
+    "/detail"
 })
 public class PageController extends HttpServlet {
 
@@ -94,7 +95,7 @@ public class PageController extends HttpServlet {
                 break;
             case "/about":
                 for(int i = 1; i <=8; i++){
-                   Product p = new Product("tets","te","te","te",2,"left");
+                   Product p = new Product("tets","te","te","img/shoes/Ultraboost_20_Shoes_Black_FX3602_01_standard.jpg",2,"left");
                    this.productFacade.create(p); 
                 }
                 request.getRequestDispatcher("about.jsp").forward(request, response);
@@ -104,8 +105,14 @@ public class PageController extends HttpServlet {
                 request.getRequestDispatcher("contact.jsp").forward(request, response);
                 break;
             case "/shoes":
-                
+                request.setAttribute("products", this.productFacade.findAll());
                 request.getRequestDispatcher("shoes.jsp").forward(request, response);
+                break;
+            case "/detail":
+                String id = request.getParameter("id");
+                Product p = this.productFacade.find(new Long(id));
+                request.setAttribute("product", p);
+                request.getRequestDispatcher("details.jsp").forward(request, response);
                 break;
             //Post
             case "/sendMessage":
