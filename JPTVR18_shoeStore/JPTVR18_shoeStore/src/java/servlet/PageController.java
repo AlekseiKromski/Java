@@ -59,9 +59,9 @@ public class PageController extends HttpServlet {
                 String send = request.getParameter("send");
                 if(send != null){
                     if(send.equals("success")){
-                        request.setAttribute("send", "success");
+                        request.setAttribute("send", true);
                     }else if(send.equals("error")){
-                        request.setAttribute("send", null);
+                        request.setAttribute("send", false);
                     }else{
                         request.setAttribute("send", null);
                     }

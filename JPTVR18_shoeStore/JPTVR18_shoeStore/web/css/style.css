@@ -34,6 +34,7 @@ hr{
 .img{
     width: 100%;
 }
+
 .navigation{
     height: 80px;
     background: #282828;
@@ -63,6 +64,9 @@ hr{
 }
 .navigation ul li a:hover{
     background-size: 100% 2px;
+}
+.notification{
+    margin-top: 5%; 
 }
 .slider{
     margin-top: 8%;

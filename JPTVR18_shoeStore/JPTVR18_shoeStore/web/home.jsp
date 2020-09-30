@@ -1,6 +1,16 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!-- Notification zone -->
-<%@ include file="WEB-INF/notification/noutification.jsp" %>
-
+<c:if test = "${send}">
+    <div class="container-fluid notification">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="alert alert-success" role="alert">
+                        Your message has been delivered
+                    </div>
+                </div>
+            </div>
+    </div>
+</c:if>
 <!-- Slider -->
     <div class="single-item slider">
         <div class="container-fluid">
