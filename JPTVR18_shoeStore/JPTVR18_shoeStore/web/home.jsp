@@ -11,6 +11,17 @@
             </div>
     </div>
 </c:if>
+<c:if test = "${send-error ne null and send-error}">
+    <div class="container-fluid notification">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="alert alert-danger" role="alert">
+                        Your message has been delivered
+                    </div>
+                </div>
+            </div>
+    </div>
+</c:if>
 <!-- Slider -->
     <div class="single-item slider">
         <div class="container-fluid">

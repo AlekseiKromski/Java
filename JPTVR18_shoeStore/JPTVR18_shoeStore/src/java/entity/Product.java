@@ -5,6 +5,7 @@
  */
 package entity;
 
+import entity.admin.User;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class Product implements Serializable {
     private String img;
     private int price;
     private String align;
-     
+    private User user;
 
     public Product() {
     }

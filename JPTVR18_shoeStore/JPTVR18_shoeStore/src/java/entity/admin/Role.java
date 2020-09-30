@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package entity.admin;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,21 +17,20 @@ import javax.persistence.Id;
  * @author yanikarp
  */
 @Entity
-public class User implements Serializable {
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String login;
-    private String password;
+    private String name;
 
-    public User() {
+    public Role() {
     }
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
+    public Role(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Long getId() {
@@ -42,28 +41,19 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getName() {
+        return name;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.login);
-        hash = 97 * hash + Objects.hashCode(this.password);
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
@@ -78,11 +68,8 @@ public class User implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
-        if (!Objects.equals(this.login, other.login)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
+        final Role other = (Role) obj;
+        if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
@@ -93,9 +80,8 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", login=" + login + ", password=" + password + '}';
+        return "Role{" + "id=" + id + ", name=" + name + '}';
     }
-
     
     
     
