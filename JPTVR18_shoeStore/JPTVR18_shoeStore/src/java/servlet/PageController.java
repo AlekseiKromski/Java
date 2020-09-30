@@ -5,9 +5,11 @@
  */
 package servlet;
 
+import entity.Club;
 import entity.Message;
 import entity.OrderProduct;
 import entity.Product;
+import facade.ClubFacade;
 import facade.MessageFacade;
 import facade.OrderProductFacade;
 import facade.OrderProductFacade;
@@ -36,7 +38,9 @@ import javax.servlet.http.HttpServletResponse;
     "/sendMessage",
     "/detail",
     "/order",
-    "/orderProduct"
+    "/orderProduct",
+    "/join",
+    "/sendJoin",
 })
 public class PageController extends HttpServlet {
 
@@ -48,6 +52,9 @@ public class PageController extends HttpServlet {
     
     @EJB
     OrderProductFacade orderProductFacade = new OrderProductFacade();
+    
+    @EJB
+    ClubFacade clubFacade = new ClubFacade();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -83,6 +90,16 @@ public class PageController extends HttpServlet {
                         request.setAttribute("order", false);
                     }else{
                         request.setAttribute("order", null);
+                    }
+                }
+                String join = request.getParameter("join");
+                if(join != null){
+                    if(join.equals("success")){
+                        request.setAttribute("join", true);
+                    }else if(join.equals("error")){
+                        request.setAttribute("join", false);
+                    }else{
+                        request.setAttribute("join", null);
                     }
                 }
                 
@@ -138,6 +155,10 @@ public class PageController extends HttpServlet {
                 request.setAttribute("product", p);
                 request.getRequestDispatcher("order.jsp").forward(request, response);
                 break;
+            case "/join":
+                request.getRequestDispatcher("join.jsp").forward(request, response);
+                break;
+                
             //Post
             case "/sendMessage":
                 String email = request.getParameter("email");
@@ -148,6 +169,19 @@ public class PageController extends HttpServlet {
                 
                 response.sendRedirect(request.getContextPath() + "/home?send=success");
                 break;
+                
+            case "/sendJoin":
+                email = request.getParameter("email");
+                if(this.clubFacade.findByEmail(email)){
+                    int key = (int) (Math.random() * (9999999 - 0 + 1) + 0);
+                    this.clubFacade.create(new Club(email, key));
+                    response.sendRedirect(request.getContextPath() + "/home?join=success");
+                }else{
+                    response.sendRedirect(request.getContextPath() + "/home?join=error");
+                }
+                
+                break;
+                
             case "/orderProduct":
                 //Get ordered product 
                 id = request.getParameter("id");

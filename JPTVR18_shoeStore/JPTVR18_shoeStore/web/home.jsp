@@ -22,6 +22,28 @@
             </div>
     </div>
 </c:if>
+<c:if test = "${join}">
+    <div class="container-fluid notification">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="alert alert-success" role="alert">
+                        Your join code has been sent
+                    </div>
+                </div>
+            </div>
+    </div>
+</c:if>
+<c:if test = "${!join}">
+    <div class="container-fluid notification">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="alert alert-danger" role="alert">
+                        You have already received a coupon
+                    </div>
+                </div>
+            </div>
+    </div>
+</c:if>
 <!-- Slider -->
     <div class="single-item slider">
         <div class="container-fluid">
@@ -159,7 +181,7 @@
             </div>
             <div class="col-1"></div>
             <div class="3">
-                <a href="" class="join-link py-3 px-5">SIGN UP FOR FREE</a>
+                <a class="join-link py-3 px-5" href="join">SIGN UP FOR FREE</a>
             </div>
         </div>
     </div>
@@ -182,7 +204,7 @@
                                     <p class="mt-2">
                                         ${product.text}
                                     </p>
-                                    <button class="button-buy">BUY</button>
+                                    <a href="detail?id=${product.id}"><button class="button-buy mb-2" id="shoes-item-${product.id}-button">BUY</button></a> 
                                 </div>
                                 <div class="col-1"></div>
                             </div>
@@ -196,7 +218,7 @@
                                     <p class="mt-2">
                                         ${product.text}
                                     </p>
-                                    <button class="button-buy">BUY</button>
+                                    <a href="detail?id=${product.id}"><button class="button-buy mb-2" id="shoes-item-${product.id}-button">BUY</button></a> 
                                 </div>
                                 <div class="col-1"></div>
                                 <div class="col-3 p-0">

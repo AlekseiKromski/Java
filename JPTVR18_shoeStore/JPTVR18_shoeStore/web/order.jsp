@@ -57,11 +57,10 @@
             </div>
             <div class="col-1"></div>
             <div class="3">
-                <a href="" class="join-link py-3 px-5">SIGN UP FOR FREE</a>
+                <a class="join-link py-3 px-5" href="join">SIGN UP FOR FREE</a>
             </div>
         </div>
     </div>
-
     <!-- Form -->
     <div class="container-fluid form-block">
         <div class="row justify-content-center align-items-center h-100">
