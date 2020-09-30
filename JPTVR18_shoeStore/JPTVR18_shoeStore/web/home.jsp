@@ -33,7 +33,7 @@
             </div>
     </div>
 </c:if>
-<c:if test = "${!join}">
+<c:if test = "${!join and join ne null}">
     <div class="container-fluid notification">
             <div class="row justify-content-center">
                 <div class="col-10">

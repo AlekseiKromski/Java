@@ -14,6 +14,7 @@
                                 <a href="detail?id=${product.id}"><button class="button-buy mb-2" id="shoes-item-${product.id}-button">BUY</button></a> 
                             </div>
                         </c:forEach>
+                    </div>
                 </div>
             </div>
         </div>
