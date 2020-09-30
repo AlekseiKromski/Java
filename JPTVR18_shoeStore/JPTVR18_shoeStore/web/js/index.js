@@ -61,5 +61,10 @@ $(document).ready(function(){
         })
     }
     
+    
+    //Hide notification element before 5000 seconds
+    setTimeout(() => {
+        $(".notification").hide();
+    }, 5000)
    
 })
