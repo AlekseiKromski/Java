@@ -1,10 +1,10 @@
 <!-- Join form -->
-    <div class="container-fluid form-block">
+    <div class="container-fluid form-block join-block">
         <div class="row justify-content-center align-items-center h-100">
             <div class="col-8 p-0">
                 <div class="container-fluid p-0">
                     <div class="row justify-content-center align-items-center h-100 p-0">
-                        <div class="col-5 p-0">
+                        <div class="col-5 p-5 shadow rounded ">
                             <h1>Join to creator club</h1>
                             <p>
                                 Enter your email in 5 minutes you will receive an email with a 15% coupon

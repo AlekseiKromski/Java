@@ -280,6 +280,10 @@ hr{
     margin-top: 8%;
     margin-bottom: 8%;
 }
+.join-block{
+    margin-top: 18%;
+    margin-bottom: 18%;
+}
 .form-control{
     border: 1px solid #282828;
 }

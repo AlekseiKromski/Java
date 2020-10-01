@@ -25,7 +25,7 @@
                                         SALE - 15%
                                         JOIN OUR CREATORS CLUB
                                     </h1>
-                                    <button>JOIN</button>
+                                    <a class="" href="join"><button>JOIN</button></a>
                                 </div>
                             </div>
                         </div>
