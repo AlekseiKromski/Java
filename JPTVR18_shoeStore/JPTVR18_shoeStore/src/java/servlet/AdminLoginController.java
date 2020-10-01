@@ -5,12 +5,10 @@
  */
 package servlet;
 
-import entity.Product;
 import entity.admin.User;
-import facade.ProductFacade;
+import facade.UserFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,15 +21,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author yanikarp
  */
-@WebServlet(name = "AdminController", urlPatterns = {
-    "/admin/home",
-    "/admin/deleteProduct",
-    "/admin/createTreatment",
-    "/admin/create",
-    
-   
+@WebServlet(name = "AdminLoginController", urlPatterns = {
+    "/admin/login",
+    "/admin/logout",
+    "/admin/loginTreatment",
 })
-public class AdminController extends HttpServlet {
+public class AdminLoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,52 +38,39 @@ public class AdminController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @EJB
-    ProductFacade productFacade = new ProductFacade();
-    
+    UserFacade userFacade = new UserFacade();
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(false);
-        if(session == null){
-            response.sendRedirect(request.getContextPath() + "/admin/login");
-            return;
-        }
-        User user = (User) session.getAttribute("user");
-        if(user == null){
-             response.sendRedirect(request.getContextPath() + "/admin/login");
-            return;
-        }
         String path = request.getServletPath();
         switch(path){
-            case "/admin/home":
-                //Get products
-                List<Product> products = this.productFacade.getAllProducts();
-                request.setAttribute("products", products);
-                request.getRequestDispatcher("/admin/index.jsp").forward(request, response);
+            case "/admin/login":
+                request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
                 break;
-            case "/admin/deleteProduct":
-                String id = request.getParameter("id");
-                Product p = this.productFacade.find(new Long(id));
-                this.productFacade.remove(p);
-                response.sendRedirect(request.getContextPath() + "/admin/home?delete=success");
-                break;
-            case "/admin/create":
-                request.getRequestDispatcher("/admin/create.jsp").forward(request, response);
-                break;
-            case "/admin/createTreatment":
-                String title = request.getParameter("title");
-                String text = request.getParameter("text");
-                String category = request.getParameter("category");
-                String price = request.getParameter("price");
-                String img = request.getParameter("img");
-                String align = request.getParameter("align");
+            case "/admin/loginTreatment":
+                String login = request.getParameter("email");
+                String password = request.getParameter("password");
                 
-                p = new Product(title,category,text,img, new Integer(price), align);
-                this.productFacade.create(p);
-                response.sendRedirect(request.getContextPath() + "/admin/home?delete=success");
+                User user = this.userFacade.findByLogin(login);
+                if(user == null){
+                    response.sendRedirect(request.getContextPath() + "/admin/login");
+                }else{
+                    if(user.getPassword().equals(password)){
+                        HttpSession session = request.getSession(true);
+                        session.setAttribute("user", user);
+                        response.sendRedirect(request.getContextPath() + "/admin/home");
+                    }else{
+                        response.sendRedirect(request.getContextPath() + "/admin/login");
+                    }
+                }
                 break;
+            case "/admin/logout":
 
-            
+                HttpSession session = request.getSession(false);
+                if(session != null) session.invalidate();
+                response.sendRedirect(request.getContextPath() + "/admin/login");    
+                break;
         }
     }
 

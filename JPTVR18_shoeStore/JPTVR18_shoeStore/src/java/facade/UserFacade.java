@@ -5,8 +5,7 @@
  */
 package facade;
 
-import entity.Product;
-import java.util.List;
+import entity.admin.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author yanikarp
  */
 @Stateless
-public class ProductFacade extends AbstractFacade<Product> {
+public class UserFacade extends AbstractFacade<User> {
 
     @PersistenceContext(unitName = "JPTVR18_shoeStorePU")
     private EntityManager em;
@@ -26,17 +25,16 @@ public class ProductFacade extends AbstractFacade<Product> {
         return em;
     }
 
-    public ProductFacade() {
-        super(Product.class);
+    public UserFacade() {
+        super(User.class);
     }
 
-    public List<Product> findByLimit(int limit) {
-        return this.em.createQuery("SELECT p FROM Product p").setMaxResults(limit).getResultList();
-    }
-
-    public List<Product> getAllProducts() {
-       List<Product> list = this.em.createQuery("SELECT p FROM Product p").getResultList();
-       return list;
+    public User findByLogin(String login) {
+        try{
+            return (User) this.em.createQuery("SELECT u FROM User u WHERE u.login = :login").setParameter("login", login).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
     }
     
 }
