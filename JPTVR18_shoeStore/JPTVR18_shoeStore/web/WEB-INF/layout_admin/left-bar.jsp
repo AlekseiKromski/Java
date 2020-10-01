@@ -5,7 +5,7 @@
                         <li class="sidebar-title">
                             Product
                         </li>
-                        <li class="active-page">
+                        <li>
                             <a href="" class="active"><i class="material-icons-outlined">list</i>List of products</a>
                         </li>
                         <li>
@@ -27,7 +27,7 @@
                             Messages
                         </li>
                         <li>
-                            <a href=""><i class="material-icons">email</i>Messages</a>
+                            <a href="messages"><i class="material-icons">email</i>Messages</a>
                         </li>
                         <li class="sidebar-title">
                             Join club

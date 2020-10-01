@@ -27,6 +27,7 @@
             <description>template for admin panel</description>
             <display-name>admin_template</display-name>
             <url-pattern>/admin/create.jsp</url-pattern>
+            <url-pattern>/admin/messages.jsp</url-pattern>
             <url-pattern>/admin/orders.jsp</url-pattern>
             <url-pattern>/admin/club.jsp</url-pattern>
             <url-pattern>/admin/login.jsp</url-pattern>

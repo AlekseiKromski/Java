@@ -6,10 +6,12 @@
 package servlet;
 
 import entity.Club;
+import entity.Message;
 import entity.OrderProduct;
 import entity.Product;
 import entity.admin.User;
 import facade.ClubFacade;
+import facade.MessageFacade;
 import facade.OrderProductFacade;
 import facade.ProductFacade;
 import java.io.IOException;
@@ -35,6 +37,8 @@ import javax.servlet.http.HttpSession;
     "/admin/orders",
     "/admin/deleteOrder",
     "/admin/join-club",
+    "/admin/messages",
+    "/admin/messageDelete",
    
 })
 public class AdminController extends HttpServlet {
@@ -56,6 +60,9 @@ public class AdminController extends HttpServlet {
     
     @EJB
     ClubFacade clubFacade = new ClubFacade();
+    
+    @EJB
+    MessageFacade messageFacade = new MessageFacade();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -148,6 +155,28 @@ public class AdminController extends HttpServlet {
                 List <Club> club = this.clubFacade.getAllClub(); 
                 request.setAttribute("club", club);
                 request.getRequestDispatcher("/admin/club.jsp").forward(request, response);
+                break;
+            case "/admin/messages":
+                delete = request.getParameter("delete");
+                if(delete != null){
+                    if(delete.equals("success")){
+                        request.setAttribute("delete", true);
+                    }else if(delete.equals("error")){
+                        request.setAttribute("delete", false);
+                    }else{
+                        request.setAttribute("delete", null);
+                    }
+                }
+
+                List <Message> messages = this.messageFacade.getAllMessages();                
+                request.setAttribute("messages", messages);
+                request.getRequestDispatcher("/admin/messages.jsp").forward(request, response);
+                break;
+            case "/admin/messageDelete":
+                id = request.getParameter("id");
+                Message m = this.messageFacade.find(new Long(id));
+                this.messageFacade.remove(m);
+                response.sendRedirect(request.getContextPath() + "/admin/messages?delete=success");
                 break;
         }
     }
