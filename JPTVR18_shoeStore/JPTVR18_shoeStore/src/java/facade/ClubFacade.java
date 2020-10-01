@@ -40,5 +40,9 @@ public class ClubFacade extends AbstractFacade<Club> {
         }
         
     }
+
+    public List<Club> getAllClub() {
+        return this.em.createQuery("SELECT c FROM Club c").getResultList();
+    }
     
 }

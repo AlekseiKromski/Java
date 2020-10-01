@@ -5,9 +5,11 @@
  */
 package servlet;
 
+import entity.Club;
 import entity.OrderProduct;
 import entity.Product;
 import entity.admin.User;
+import facade.ClubFacade;
 import facade.OrderProductFacade;
 import facade.ProductFacade;
 import java.io.IOException;
@@ -32,7 +34,7 @@ import javax.servlet.http.HttpSession;
     "/admin/create",
     "/admin/orders",
     "/admin/deleteOrder",
-    
+    "/admin/join-club",
    
 })
 public class AdminController extends HttpServlet {
@@ -51,6 +53,9 @@ public class AdminController extends HttpServlet {
     
     @EJB
     OrderProductFacade orderProductFacade = new OrderProductFacade();
+    
+    @EJB
+    ClubFacade clubFacade = new ClubFacade();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -138,6 +143,11 @@ public class AdminController extends HttpServlet {
                 OrderProduct op = this.orderProductFacade.find(new Long(id));
                 this.orderProductFacade.remove(op);
                 response.sendRedirect(request.getContextPath() + "/admin/orders?delete=success");
+                break;
+            case "/admin/join-club":
+                List <Club> club = this.clubFacade.getAllClub(); 
+                request.setAttribute("club", club);
+                request.getRequestDispatcher("/admin/club.jsp").forward(request, response);
                 break;
         }
     }

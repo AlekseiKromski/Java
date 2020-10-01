@@ -33,7 +33,7 @@
                             Join club
                         </li>
                         <li>
-                            <a href="charts.html"><i class="material-icons">label</i>Join club</a>
+                            <a href="join-club"><i class="material-icons">label</i>Join club</a>
                         </li>
                     </ul>
                 </div>
