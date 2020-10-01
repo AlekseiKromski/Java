@@ -15,7 +15,7 @@
                             Orders
                         </li>
                         <li>
-                            <a href=""><i class="material-icons">local_shipping</i>Orders</a>
+                            <a href="orders"><i class="material-icons">local_shipping</i>Orders</a>
                         </li>
                         <li class="sidebar-title">
                             Users

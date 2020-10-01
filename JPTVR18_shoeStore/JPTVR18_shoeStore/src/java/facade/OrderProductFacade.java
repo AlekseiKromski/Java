@@ -6,6 +6,7 @@
 package facade;
 
 import entity.OrderProduct;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class OrderProductFacade extends AbstractFacade<OrderProduct> {
 
     public OrderProductFacade() {
         super(OrderProduct.class);
+    }
+
+    public List <OrderProduct>  getAllProductFacade() {
+        return this.em.createQuery("SELECT o FROM OrderProduct o").getResultList();
     }
     
 }

@@ -5,8 +5,10 @@
  */
 package servlet;
 
+import entity.OrderProduct;
 import entity.Product;
 import entity.admin.User;
+import facade.OrderProductFacade;
 import facade.ProductFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,6 +30,8 @@ import javax.servlet.http.HttpSession;
     "/admin/deleteProduct",
     "/admin/createTreatment",
     "/admin/create",
+    "/admin/orders",
+    "/admin/deleteOrder",
     
    
 })
@@ -44,6 +48,9 @@ public class AdminController extends HttpServlet {
      */
     @EJB
     ProductFacade productFacade = new ProductFacade();
+    
+    @EJB
+    OrderProductFacade orderProductFacade = new OrderProductFacade();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -110,7 +117,28 @@ public class AdminController extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/admin/home?create=success");
                 break;
 
-            
+            case "/admin/orders":
+                delete = request.getParameter("delete");
+                if(delete != null){
+                    if(delete.equals("success")){
+                        request.setAttribute("delete", true);
+                    }else if(delete.equals("error")){
+                        request.setAttribute("delete", false);
+                    }else{
+                        request.setAttribute("delete", null);
+                    }
+                }
+
+                List <OrderProduct> orders = this.orderProductFacade.getAllProductFacade();                
+                request.setAttribute("orders", orders);
+                request.getRequestDispatcher("/admin/orders.jsp").forward(request, response);
+                break;
+            case "/admin/deleteOrder":
+                id = request.getParameter("id");
+                OrderProduct op = this.orderProductFacade.find(new Long(id));
+                this.orderProductFacade.remove(op);
+                response.sendRedirect(request.getContextPath() + "/admin/orders?delete=success");
+                break;
         }
     }
 
