@@ -46,22 +46,32 @@ public class AdminLoginController extends HttpServlet {
         String path = request.getServletPath();
         switch(path){
             case "/admin/login":
+                 
+                String login = request.getParameter("login");
+                if(login != null){
+                    if(login.equals("error")){
+                        request.setAttribute("login", true);
+                    }else{
+                        request.setAttribute("login", null);
+                    }
+                }
+                
                 request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
                 break;
             case "/admin/loginTreatment":
-                String login = request.getParameter("email");
+                login = request.getParameter("email");
                 String password = request.getParameter("password");
                 
                 User user = this.userFacade.findByLogin(login);
                 if(user == null){
-                    response.sendRedirect(request.getContextPath() + "/admin/login");
+                    response.sendRedirect(request.getContextPath() + "/admin/login?login=error");
                 }else{
                     if(user.getPassword().equals(password)){
                         HttpSession session = request.getSession(true);
                         session.setAttribute("user", user);
                         response.sendRedirect(request.getContextPath() + "/admin/home");
                     }else{
-                        response.sendRedirect(request.getContextPath() + "/admin/login");
+                        response.sendRedirect(request.getContextPath() + "/admin/login?login=error");
                     }
                 }
                 break;

@@ -14,6 +14,7 @@ import facade.ClubFacade;
 import facade.MessageFacade;
 import facade.OrderProductFacade;
 import facade.ProductFacade;
+import facade.UserFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -39,7 +40,12 @@ import javax.servlet.http.HttpSession;
     "/admin/join-club",
     "/admin/messages",
     "/admin/messageDelete",
-   
+    "/admin/users",
+    "/admin/create-user",
+    "/admin/create-user-treatment",
+    "/admin/change-user-treatment",
+    "/admin/delete-user",
+    "/admin/change-user",
 })
 public class AdminController extends HttpServlet {
 
@@ -63,6 +69,9 @@ public class AdminController extends HttpServlet {
     
     @EJB
     MessageFacade messageFacade = new MessageFacade();
+    
+    @EJB
+    UserFacade userFacade = new UserFacade();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -178,6 +187,82 @@ public class AdminController extends HttpServlet {
                 this.messageFacade.remove(m);
                 response.sendRedirect(request.getContextPath() + "/admin/messages?delete=success");
                 break;
+            case "/admin/users":
+                delete = request.getParameter("delete");
+                if(delete != null){
+                    if(delete.equals("success")){
+                        request.setAttribute("delete", true);
+                    }else if(delete.equals("error")){
+                        request.setAttribute("delete", false);
+                    }else{
+                        request.setAttribute("delete", null);
+                    }
+                }
+                
+                create = request.getParameter("create");
+                if(create != null){
+                    if(create.equals("success")){
+                        request.setAttribute("create", true);
+                    }else if(create.equals("error")){
+                        request.setAttribute("create", false);
+                    }else{
+                        request.setAttribute("create", null);
+                    }
+                }
+                
+                String change = request.getParameter("change");
+                if(change != null){
+                    if(change.equals("success")){
+                        request.setAttribute("change", true);
+                    }else if(change.equals("error")){
+                        request.setAttribute("change", false);
+                    }else{
+                        request.setAttribute("change", null);
+                    }
+                }
+                //Get products
+                List<User> users = this.userFacade.getAllUsers();
+                request.setAttribute("users", users);
+                request.getRequestDispatcher("/admin/users.jsp").forward(request, response);
+                break;
+                
+            case "/admin/create-user":
+                request.getRequestDispatcher("/admin/createUser.jsp").forward(request, response);
+                break;
+            case "/admin/create-user-treatment":
+                String login = request.getParameter("login");
+                String password = request.getParameter("password");
+                
+                User new_user = new User(login,password);
+                this.userFacade.create(new_user);
+                response.sendRedirect(request.getContextPath() + "/admin/users?create=success");
+                break;
+            case "/admin/delete-user":
+                id = request.getParameter("id");
+                User find_user = this.userFacade.find(new Long(id));
+                this.userFacade.remove(find_user);
+                response.sendRedirect(request.getContextPath() + "/admin/users?delete=success");
+                break;
+            case "/admin/change-user":
+                id = request.getParameter("id");
+                find_user = this.userFacade.find(new Long(id));
+                request.setAttribute("user", find_user);
+                request.getRequestDispatcher("/admin/changeUser.jsp").forward(request, response);
+                break;
+            case "/admin/change-user-treatment":
+                id = request.getParameter("id");
+                login = request.getParameter("login");
+                password = request.getParameter("password");
+                
+                if(this.userFacade.updateData(new Long(id),login, password)){
+                    response.sendRedirect(request.getContextPath() + "/admin/users?change=success");
+                }else{
+                    response.sendRedirect(request.getContextPath() + "/admin/users?change=error");
+
+                }                
+                break;
+
+                
         }
     }
 

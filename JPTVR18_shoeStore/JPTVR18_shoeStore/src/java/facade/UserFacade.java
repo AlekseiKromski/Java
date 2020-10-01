@@ -6,9 +6,11 @@
 package facade;
 
 import entity.admin.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -35,6 +37,21 @@ public class UserFacade extends AbstractFacade<User> {
         }catch(Exception e){
             return null;
         }
+    }
+
+    public List<User> getAllUsers() {
+        return this.em.createQuery("SELECT u FROM User u").getResultList();
+    }
+
+    public boolean updateData(Long id, String login, String password) {
+        
+        this.em.createQuery("UPDATE User u SET u.login = :login, u.password = :password WHERE u.id  = :id")
+                .setParameter("login", login)
+                .setParameter("password", password)
+                .setParameter("id", id).executeUpdate();
+        
+        return true;
+
     }
     
 }

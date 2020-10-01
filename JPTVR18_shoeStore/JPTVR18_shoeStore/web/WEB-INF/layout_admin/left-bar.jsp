@@ -21,7 +21,10 @@
                             Users
                         </li>
                         <li>
-                            <a href=""><i class="material-icons">account_box</i>Users</a>
+                            <a href="users"><i class="material-icons">account_box</i>Users</a>
+                        </li>
+                        <li>
+                            <a href="create-user"><i class="material-icons">add</i>Create user</a>
                         </li>
                         <li class="sidebar-title">
                             Messages

@@ -1,6 +1,19 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="page-content">
                     <div class="main-wrapper">
+                        <c:if test = "${login}">
+                                <div class="container-fluid notification">
+                                        <div class="row justify-content-center">
+                                            <div class="col-10">
+                                                <div class="alert alert-danger" role="alert">
+                                                    Error, try again
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </c:if>
                         <div class="row justify-content-center">
+                            
                             <div class="col-xl-5">
                                 <div class="card">
                                     <div class="card-body">
