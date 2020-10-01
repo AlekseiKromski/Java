@@ -61,6 +61,28 @@ public class AdminController extends HttpServlet {
         String path = request.getServletPath();
         switch(path){
             case "/admin/home":
+                String delete = request.getParameter("delete");
+                if(delete != null){
+                    if(delete.equals("success")){
+                        request.setAttribute("delete", true);
+                    }else if(delete.equals("error")){
+                        request.setAttribute("delete", false);
+                    }else{
+                        request.setAttribute("delete", null);
+                    }
+                }
+                
+                String create = request.getParameter("create");
+                if(create != null){
+                    if(create.equals("success")){
+                        request.setAttribute("create", true);
+                    }else if(create.equals("error")){
+                        request.setAttribute("create", false);
+                    }else{
+                        request.setAttribute("create", null);
+                    }
+                }
+                
                 //Get products
                 List<Product> products = this.productFacade.getAllProducts();
                 request.setAttribute("products", products);
@@ -85,7 +107,7 @@ public class AdminController extends HttpServlet {
                 
                 p = new Product(title,category,text,img, new Integer(price), align);
                 this.productFacade.create(p);
-                response.sendRedirect(request.getContextPath() + "/admin/home?delete=success");
+                response.sendRedirect(request.getContextPath() + "/admin/home?create=success");
                 break;
 
             

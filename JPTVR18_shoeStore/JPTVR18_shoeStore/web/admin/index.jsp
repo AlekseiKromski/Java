@@ -3,8 +3,32 @@
 <%@ include file="../WEB-INF/layout_admin/left-bar.jsp" %>
 
 
+
 <div class="page-container mt-5">
                 <div class="page-content">
+    <c:if test = "${delete}">
+    <div class="container-fluid notification">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="alert alert-success" role="alert">
+                        Your product has been deleted
+                    </div>
+                </div>
+            </div>
+    </div>
+</c:if>
+    
+<c:if test = "${create}">
+    <div class="container-fluid notification">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <div class="alert alert-success" role="alert">
+                        Your product has been created
+                    </div>
+                </div>
+            </div>
+    </div>
+</c:if>
                     <div class="page-info">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
