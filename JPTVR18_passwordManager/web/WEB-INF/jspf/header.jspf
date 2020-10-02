@@ -27,8 +27,13 @@
             <li class="nav-ite">
               <a class="nav-link" href="showFormAddResource">Add resource</a>
             </li>
+            
         </c:if>
-
+        <c:if test = "${isAdmin eq 'ADMIN'}">
+            <li class="nav-ite">
+              <a class="nav-link" href="showListUsers">List of users</a>
+            </li>
+        </c:if>
     </ul>
     <c:if test = "${loginOn == false}">
         <a href="<c:url value='/showFormLogin'/>" class="btn btn-light mr-2">Login in</a>

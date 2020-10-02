@@ -9,6 +9,8 @@
     <ul>
         <li><a href="<c:url value='/showFormAddResource'/>">Добавить новый ресурс</a></li>
         <li><a href="<c:url value='/listResource'/>">Список ресурсов</a></li>
-        <li><a href="<c:url value='/listUser'/>">Список пользователей</a></li>
+        <li><a href="<c:url value='/listUser'/>">Список пользователей</a></li>        
+        <li><a href="<c:url value='/showL'/>">Список пользователей</a></li>
+
     </ul>
 </c:if>

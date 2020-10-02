@@ -5,47 +5,74 @@
  */
 package servlets;
 
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import session.UserFacade;
+import session.UserRolesFacade;
 
 /**
  *
  * @author pupil
  */
 @WebServlet(name = "AdminController", urlPatterns = {
-    "/listUsers"
+    "/showListUsers"
 })
 public class AdminController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    @EJB
+    private UserRolesFacade userRolesFacade = new UserRolesFacade();
+    
+    @EJB
+    private UserFacade userFacade = new UserFacade();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdminController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdminController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession(false);
+        if(session == null){
+            request.setAttribute("info", "No permission");
+            request.getRequestDispatcher("/showFormLogin.jsp").forward(request, response);
         }
+        User user = (User) session.getAttribute("user");
+        if(user == null){
+            request.setAttribute("info", "No permission");
+            request.getRequestDispatcher("/showFormLogin").forward(request, response);
+        }
+        if(this.userRolesFacade.checkRole(user,"ADMIN")){
+            request.setAttribute("info", "No permission");
+            request.getRequestDispatcher("/index").forward(request, response);
+        }
+        
+        String path = request.getServletPath();
+        switch(path){
+            case "/showListUsers":
+                List<User> users = this.userFacade.findAll();
+                Map<User,String> usersMap = new HashMap<>();
+                for (int i = 0; i < users.size(); i++) {
+                    User userForMap = users.get(i);
+                    String topRoleUser = this.userRolesFacade.getTopRole(userForMap);
+                    usersMap.put(userForMap, topRoleUser);
+                    
+                }
+                String topRoleCurrentUser = this.userRolesFacade.getTopRole(user);
+
+                request.setAttribute("usersMap", usersMap);
+                request.getRequestDispatcher("/admin/showListUsers.jsp").forward(request, response);
+                break;
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

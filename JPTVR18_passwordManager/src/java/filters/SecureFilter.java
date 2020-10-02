@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import javax.ejb.EJB;
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -20,6 +21,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import session.UserRolesFacade;
 
 /**
  *
@@ -28,7 +30,9 @@ import javax.servlet.http.HttpSession;
 @WebFilter(filterName = "SecureFilter",dispatcherTypes = {DispatcherType.FORWARD}, urlPatterns = {"/*"})
 public class SecureFilter implements Filter {
     
-   
+   @EJB
+   private UserRolesFacade userRolesFacade = new UserRolesFacade();
+    
     public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException {
         
         
@@ -46,6 +50,8 @@ public class SecureFilter implements Filter {
             chain.doFilter(request, response);
             return;
         }
+        String topRoleCurrentUser = this.userRolesFacade.getTopRole(user);
+        hsr.setAttribute("isAdmin", topRoleCurrentUser);
         hsr.setAttribute("loginOn", true);
 
         //Передать на след. фильтр
