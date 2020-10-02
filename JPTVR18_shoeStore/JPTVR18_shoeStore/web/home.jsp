@@ -86,7 +86,7 @@
                 </div>
             </div>
             </div>
-            <!-- 
+        
             <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-10">
@@ -107,7 +107,6 @@
                 </div>
             </div>
         </div>
-         -->
     </div>
 
     <!-- About us -->
