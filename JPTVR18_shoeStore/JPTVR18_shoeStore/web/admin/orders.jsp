@@ -46,7 +46,7 @@
                                                     <td><a href="${pageContext.request.contextPath}/detail?id=${order.product.id}">${order.product.title}</a></td>
                                                     <td>${order.address}</td>
                                                     <td>${order.email}</td>
-                                                    <td>$${order.phone}</td>
+                                                    <td>${order.phone}</td>
                                                     <td>${order.user_name}</td>
                                                     <td><a href="deleteOrder?id=${order.id}"><button class="btn btn-danger">Delete</button></a></td>
                                                 </tr>
