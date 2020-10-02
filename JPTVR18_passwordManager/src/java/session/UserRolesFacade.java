@@ -32,7 +32,7 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
     
     public boolean checkRole(User user, String roleName){
         try {
-            this.em.createQuery("SELECT ur FROM userRoles ur WHERE ur.role =: role AND user = :user ")
+            this.em.createQuery("SELECT ur FROM userRoles ur WHERE ur.role.name =: role AND ur.user = :user ")
                     .setParameter("role", roleName)
                     .setParameter("user", user)
                     .getSingleResult();

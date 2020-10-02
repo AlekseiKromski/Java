@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 import session.ResourceFacade;
 import session.UserFacade;
 import session.UserResourcesFacade;
+import session.UserRolesFacade;
 
 /**
  *
@@ -48,6 +49,8 @@ public class WebController extends HttpServlet {
     private UserFacade userFacade = new UserFacade();
     @EJB
     private UserResourcesFacade userResourcesFacade = new UserResourcesFacade();
+    @EJB
+    private UserRolesFacade userRolesFacade = new UserRolesFacade();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,8 +65,7 @@ public class WebController extends HttpServlet {
             request.setAttribute("info", "No permission");
             request.getRequestDispatcher("/showFormLogin").forward(request, response);
         }
-        UserManager userManager = new UserManager();
-        if(!userManager.isRole(user,"USER")){
+        if(this.userRolesFacade.checkRole(user,"USER")){
             request.setAttribute("info", "No permission");
             request.getRequestDispatcher("/index").forward(request, response);
         }
