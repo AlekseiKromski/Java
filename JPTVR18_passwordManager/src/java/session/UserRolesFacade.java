@@ -5,9 +5,11 @@
  */
 package session;
 
+import entity.Role;
 import entity.User;
 import entity.UserRoles;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +21,10 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UserRolesFacade extends AbstractFacade<UserRoles> {
 
+    @EJB
+    private RoleFacade roleFacade = new RoleFacade();
+    
+    
     @PersistenceContext(unitName = "JPTVR18_passwordManagerPU")
     private EntityManager em;
 
@@ -57,5 +63,30 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
             }
         }
         return null;
+    }
+
+    public void deleteAllUserRoles(User updateUser) {
+        this.em.createQuery("DELETE FROM UserRoles ur WHERE ur.user = :updateUser")
+                .setParameter("updateUser", updateUser).executeUpdate();
+    }
+
+    public void setNewRoleToUser(String new_role, User updateUser) {
+        if(new_role.equals("ADMIN")){
+            Role admin = this.roleFacade.getRole(new_role);
+            UserRoles userRoles = new UserRoles();
+            userRoles.setUser(updateUser);
+            userRoles.setRole(admin);
+            this.create(userRoles);
+            Role user = this.roleFacade.getRole("USER");
+            userRoles.setRole(user);
+            this.create(userRoles);
+        }
+        if(new_role.equals("USER")){
+            Role admin = this.roleFacade.getRole(new_role);
+            UserRoles userRoles = new UserRoles();
+            userRoles.setUser(updateUser);
+            userRoles.setRole(admin);
+            this.create(userRoles);
+        }
     }
 }

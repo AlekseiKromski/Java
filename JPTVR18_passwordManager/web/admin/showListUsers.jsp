@@ -27,7 +27,7 @@
                                 <tr>
                                     <td>${entry.key.login}</td>
                                     <td>${entry.value}</td>
-                                    <td><a class="btn btn-warning" href="edit-user-role?id=${entry.key.id}">Изменить</a></td>
+                                    <td><a class="btn btn-warning" href="form-edit-user-role?id=${entry.key.id}">Изменить</a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

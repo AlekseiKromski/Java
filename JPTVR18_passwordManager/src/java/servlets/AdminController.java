@@ -5,7 +5,9 @@
  */
 package servlets;
 
+import entity.Role;
 import entity.User;
+import entity.UserRoles;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -18,15 +20,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import session.RoleFacade;
 import session.UserFacade;
 import session.UserRolesFacade;
+import utils.MakeHash;
 
 /**
  *
  * @author pupil
  */
 @WebServlet(name = "AdminController", urlPatterns = {
-    "/showListUsers"
+    "/showListUsers",
+    "/form-edit-user-role",
+    "/edit-user-role",
+    
 })
 public class AdminController extends HttpServlet {
 
@@ -35,6 +42,9 @@ public class AdminController extends HttpServlet {
     
     @EJB
     private UserFacade userFacade = new UserFacade();
+    
+    @EJB
+    private RoleFacade roleFacade = new RoleFacade();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,6 +80,47 @@ public class AdminController extends HttpServlet {
 
                 request.setAttribute("usersMap", usersMap);
                 request.getRequestDispatcher("/admin/showListUsers.jsp").forward(request, response);
+                break;
+            case "/form-edit-user-role":
+                String user_id = request.getParameter("id");
+                User edit_user = this.userFacade.find(Long.parseLong(user_id));
+                if(edit_user == null){
+                    response.sendRedirect(request.getContextPath() + "/?error=true");
+                }
+                List<Role> roles = this.roleFacade.findAll();
+                request.setAttribute("listRoles", roles);
+                String topRoleEditUser = this.userRolesFacade.getTopRole(edit_user);
+                request.setAttribute("topRoleEditUser", topRoleEditUser);
+                request.setAttribute("edit_user", edit_user);
+                request.getRequestDispatcher("/admin/form-edit-user-role.jsp").forward(request, response);
+                break;
+            case "/edit-user-role":
+                user_id = request.getParameter("id_user");
+                String new_login = request.getParameter("login");
+                String new_password = request.getParameter("password");
+                String new_role = request.getParameter("role");
+                
+                if(user_id == null){
+                    response.sendRedirect(request.getContextPath() + "/?error=true");
+                }
+                
+                //Delete all user role
+                User updateUser = this.userFacade.find(Long.parseLong(user_id));
+                this.userRolesFacade.deleteAllUserRoles(updateUser);
+                
+                //Change user role
+                this.userRolesFacade.setNewRoleToUser(new_role, updateUser);
+                
+                updateUser.setLogin(new_login);
+                if(new_password != null){
+                    MakeHash mh = new MakeHash();
+                    String salts = mh.createSalts();
+                    new_password = mh.create(new_password, salts);
+                    updateUser.setPassword(new_password);
+                }
+                
+                this.userFacade.edit(updateUser);
+                response.sendRedirect(request.getContextPath() + "/?edit=true");
                 break;
         }
         
