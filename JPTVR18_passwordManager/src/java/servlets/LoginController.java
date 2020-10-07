@@ -117,8 +117,8 @@ public class LoginController extends HttpServlet {
     public void init() throws ServletException {
         int count_role = this.roleFacade.count();
         if(count_role <= 0){
-            Role role_user = new Role("USER");        
             Role role_admin = new Role("ADMIN");
+            Role role_user = new Role("USER");  
             this.roleFacade.create(role_user);            
             this.roleFacade.create(role_admin);
             
@@ -131,6 +131,9 @@ public class LoginController extends HttpServlet {
             //Make user roles 
             UserRoles ur = new UserRoles();
             ur.setUser(admin);
+            ur.setRole(role_admin);
+            this.urf.create(ur);
+            
             ur.setRole(role_user);
             this.urf.create(ur);
         }

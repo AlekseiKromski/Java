@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import utils.RoleUtil;
 
 /**
  *
@@ -51,18 +52,10 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
     }
 
     public String getTopRole(User user) {
-        List<UserRoles> userRoleses = this.em.createQuery("SELECT ur FROM UserRoles ur WHERE ur.user = :user")
+        List<UserRoles> userRoles = this.em.createQuery("SELECT ur FROM UserRoles ur WHERE ur.user = :user")
                 .setParameter("user", user).getResultList();
-        for (UserRoles ur : userRoleses) {
-            if("ADMIN".equals(ur.getRole().getName())){
-                return "ADMIN";
-            }else if("MANAGER".equals(ur.getRole().getName())){
-                return "MANAGER";
-            }else if("USER".equals(ur.getRole().getName())){
-                return "USER";
-            }
-        }
-        return null;
+        RoleUtil roleUtil = new RoleUtil();
+        return roleUtil.checkTopRole(userRoles);
     }
 
     public void deleteAllUserRoles(User updateUser) {
