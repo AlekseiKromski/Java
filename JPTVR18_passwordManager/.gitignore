@@ -5,3 +5,4 @@ build.xml
 web/WEB-INF/glassfish-web.xml
 web/WEB-INF/glassfish-resources.xml
 web/WEB-INF/web.xml
+src/conf/persistence.xml
