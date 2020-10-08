@@ -6,18 +6,26 @@
 package utils;
 
 import entity.Role;
+import entity.User;
 import entity.UserRoles;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.EJB;
+import session.RoleFacade;
+import session.UserRolesFacade;
 
 /**
  *
  * @author yanikarp
  */
 public class RoleUtil {
+    
+    @EJB
+    private UserRolesFacade userRolesFacade = new UserRolesFacade();
+    
     //Разместить роли по возрастанию
     private List<String> roles = Arrays.asList("ADMIN", "USER");
     private Map<String, List<String>> roles_tree = new HashMap<>();
@@ -27,15 +35,13 @@ public class RoleUtil {
 
     //Constructor
     public RoleUtil() {
-        
         //Init roles_tree
         List<String> admin_tree = Arrays.asList("ADMIN","USER");
         List<String> user_tree = Arrays.asList("USER");
         
         //Make roles_tree
-        this.getRoles_tree().put("ADMIN", admin_tree);
-        this.getRoles_tree().put("USER", user_tree);
-        
+        this.roles_tree.put("ADMIN", admin_tree);
+        this.roles_tree.put("USER", user_tree);
         
     }
     
@@ -84,6 +90,23 @@ public class RoleUtil {
         //Если ничего не смог найти
         return getCurrentRole();
     } 
+
+    //Создаем роли на основе древа ролей
+    public void changeRole(String new_role, User updateUser, RoleFacade rf, UserRolesFacade urf) {
+        
+        for (String role : this.roles_tree.keySet()) {
+            if(new_role.equals(role)){
+                List<String> tree = this.roles_tree.get(new_role);
+                for (String el : tree){
+                    Role db_role = rf.getRole(el);
+                    UserRoles userRoles = new UserRoles();
+                    userRoles.setUser(updateUser);
+                    userRoles.setRole(db_role);
+                    urf.create(userRoles);   
+                }
+            }
+        }
+    }
    
    
 }

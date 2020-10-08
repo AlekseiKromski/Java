@@ -25,7 +25,6 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
     @EJB
     private RoleFacade roleFacade = new RoleFacade();
     
-    
     @PersistenceContext(unitName = "JPTVR18_passwordManagerPU")
     private EntityManager em;
 
@@ -64,7 +63,10 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
     }
 
     public void setNewRoleToUser(String new_role, User updateUser) {
+        /*
         if(new_role.equals("ADMIN")){
+            
+            
             Role admin = this.roleFacade.getRole(new_role);
             UserRoles userRoles = new UserRoles();
             userRoles.setUser(updateUser);
@@ -76,6 +78,7 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
             userRoles2.setUser(updateUser);
             userRoles2.setRole(user);
             this.create(userRoles);
+
         }
         if(new_role.equals("USER")){
             Role admin = this.roleFacade.getRole(new_role);
@@ -84,5 +87,8 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
             userRoles.setRole(admin);
             this.create(userRoles);
         }
+        */
+        RoleUtil roleUtil = new RoleUtil();
+        roleUtil.changeRole(new_role, updateUser, this.roleFacade, this);
     }
 }
