@@ -77,8 +77,11 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
             userRoles.setUser(updateUser);
             userRoles.setRole(admin);
             this.create(userRoles);
+            
             Role user = this.roleFacade.getRole("USER");
-            userRoles.setRole(user);
+            UserRoles userRoles2 = new UserRoles();
+            userRoles2.setUser(updateUser);
+            userRoles2.setRole(user);
             this.create(userRoles);
         }
         if(new_role.equals("USER")){
