@@ -108,8 +108,11 @@ public class AdminController extends HttpServlet {
                 User updateUser = this.userFacade.find(Long.parseLong(user_id));
                 this.userRolesFacade.deleteAllUserRoles(updateUser);
                 
+                //Get new role
+                Role new_role_obj = this.roleFacade.find(Long.parseLong(new_role));
+                
                 //Change user role
-                this.userRolesFacade.setNewRoleToUser(new_role, updateUser);
+                this.userRolesFacade.setNewRoleToUser(new_role_obj.getName(), updateUser);
                 
                 updateUser.setLogin(new_login);
                 if(new_password != null){
