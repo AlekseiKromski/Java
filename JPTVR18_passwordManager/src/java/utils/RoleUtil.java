@@ -9,7 +9,9 @@ import entity.Role;
 import entity.UserRoles;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -18,8 +20,25 @@ import java.util.List;
 public class RoleUtil {
     //Разместить роли по возрастанию
     private List<String> roles = Arrays.asList("ADMIN", "USER");
+    private Map<String, List<String>> roles_tree = new HashMap<>();
+    
+    //Default user
     private String currentRole = "USER";
 
+    //Constructor
+    public RoleUtil() {
+        
+        //Init roles_tree
+        List<String> admin_tree = Arrays.asList("ADMIN","USER");
+        List<String> user_tree = Arrays.asList("USER");
+        
+        //Make roles_tree
+        this.getRoles_tree().put("ADMIN", admin_tree);
+        this.getRoles_tree().put("USER", user_tree);
+        
+        
+    }
+    
     //Getter for roles
     public List<String> getRoles() {
         return roles;
@@ -28,6 +47,16 @@ public class RoleUtil {
     //Getter for currentRole
     public String getCurrentRole() {
         return currentRole;
+    }
+        
+    //Getter for roles_tree
+    public Map<String, List<String>> getRoles_tree() {
+        return roles_tree;
+    }
+
+    //Setter for roles_tree
+    public void setRoles_tree(Map<String, List<String>> roles_tree) {
+        this.roles_tree = roles_tree;
     }
 
     //Setter for currrentRole
