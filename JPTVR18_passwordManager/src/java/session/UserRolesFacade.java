@@ -78,6 +78,7 @@ public class UserRolesFacade extends AbstractFacade<UserRoles> {
             userRoles.setRole(admin);
             this.create(userRoles);
             
+            //Get new role and create new UserRoles object
             Role user = this.roleFacade.getRole("USER");
             UserRoles userRoles2 = new UserRoles();
             userRoles2.setUser(updateUser);
