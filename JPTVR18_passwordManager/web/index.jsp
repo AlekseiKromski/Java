@@ -27,6 +27,16 @@
             </div>
         </div>   
     </c:if>
+    
+     <c:if test = "${not empty edit}">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="alert alert-success" role="alert">
+                    ${edit}
+                </div>
+            </div>
+        </div>   
+    </c:if>
     <div class="row justify-content-center p-5">
         <div class="col-8">
             <div class="container-fluid">

@@ -37,6 +37,12 @@ public class DefaultController extends HttpServlet {
             request.setAttribute("logout", "You has been logouted");
 
         }
+        String edit = request.getParameter("edit");
+        if(edit != null && edit.equals("true")){
+            request.setAttribute("edit", "You has been change user");
+
+        }
+        
 
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
