@@ -128,11 +128,19 @@ public class LoginController extends HttpServlet {
             User admin = new User("admin",pass);
             this.userFacade.create(admin);
             
-            //Make user roles 
+            //Make admin roles 
             UserRoles ur = new UserRoles();
+            ur.setUser(admin);
+            ur.setRole(role_admin);
+            this.urf.create(ur);
+            
+            //Make user roles 
+            ur = new UserRoles();
             ur.setUser(admin);
             ur.setRole(role_user);
             this.urf.create(ur);
+            
+            
         }
     }
 
