@@ -1,0 +1,7 @@
+build.xml
+/nbproject
+/dist
+/build
+web/WEB-INF/glassfish-web.xml
+web/WEB-INF/glassfish-resources.xml
+src/conf/persistence.xml
