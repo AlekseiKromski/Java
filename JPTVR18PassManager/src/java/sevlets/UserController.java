@@ -11,6 +11,7 @@ import entity.User;
 import entity.UserRoles;
 import java.io.IOException;
 import javax.ejb.EJB;
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,7 @@ import session.UserRolesFacade;
     "/createUser",
     "/showFormLogin",
     "/login",
-    "/logout"
+    "/logout",
 })
 
 public class UserController extends HttpServlet {
@@ -77,6 +78,9 @@ public class UserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession session = request.getSession(false);
+        
         String path = request.getServletPath();
         switch (path) {
             case "/index":
@@ -103,7 +107,7 @@ public class UserController extends HttpServlet {
                     request.getRequestDispatcher("/showFormLogin")
                         .forward(request, response);
                 }
-                HttpSession session = request.getSession(true);
+                session = request.getSession(true);
                 session.setAttribute("user", user);
                 request.setAttribute("info", "Привет, "+user.getLogin());
                 request.setAttribute("user", user);
