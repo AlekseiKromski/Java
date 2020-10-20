@@ -1,3 +1,5 @@
+fetch('')
+
 const node_list = document.querySelectorAll(".nav-link");
 const content = document.querySelector("#content-js");
 let active_link = null;
@@ -42,33 +44,62 @@ function changeContent(id){
         if(id === "showFormAddResource"){
             active_id = id;
             content.innerHTML = `
-                        <form action="createResource" method="POST">
+                        <form action="createResource" id="createResource" method="POST">
                             <h3 class="w-100 text-center ">Создание нового ресурса!</h3>
-                        <div class="form-group w-50 mx-auto">    
-                            <label for="name">Название ресурса</label>
-                            <input value="" type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="name">
-                            <small id="nameHelp" class="form-text text-muted"></small>
-                        </div>
-                        <div class="form-group w-50 mx-auto">    
-                            <label for="url">Url ресурса</label>
-                            <input value="" type="text" class="form-control" id="url" name="url" aria-describedby="urlHelp" placeholder="url">
-                            <small id="urlHelp" class="form-text text-muted"></small>
-                        </div>
-                        <div class="form-group w-50 mx-auto">    
-                            <label for="login">Логин</label>
-                            <input value="" type="text" class="form-control" id="login" name="login" aria-describedby="loginHelp" placeholder="Логин">
-                            <small id="emailHelp" class="form-text text-muted"></small>
-                        </div>
-                        <div class="form-group w-50 mx-auto">    
-                            <label for="password">Пароль</label>
-                            <input value="" type="text" class="form-control" id="password" name="password" aria-describedby="passwordHelp" placeholder="Пароль">
-                            <small id="emailHelp" class="form-text text-muted"></small>
-                        </div>
-                        <div class="form-group w-50 mx-auto text-center">
-                            <button type="submit" class="btn btn-primary w-50 mt-4">Добавить ресурс</button>
-                        </div>
+                            <div class="form-group w-50 mx-auto">    
+                                <label for="name">Название ресурса</label>
+                                <input value="" type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="name">
+                                <small id="nameHelp" class="form-text text-muted"></small>
+                            </div>
+                            <div class="form-group w-50 mx-auto">    
+                                <label for="url">Url ресурса</label>
+                                <input value="" type="text" class="form-control" id="url" name="url" aria-describedby="urlHelp" placeholder="url">
+                                <small id="urlHelp" class="form-text text-muted"></small>
+                            </div>
+                            <div class="form-group w-50 mx-auto">    
+                                <label for="login">Логин</label>
+                                <input value="" type="text" class="form-control" id="login" name="login" aria-describedby="loginHelp" placeholder="Логин">
+                                <small id="emailHelp" class="form-text text-muted"></small>
+                            </div>
+                            <div class="form-group w-50 mx-auto">    
+                                <label for="password">Пароль</label>
+                                <input value="" type="text" class="form-control" id="password" name="password" aria-describedby="passwordHelp" placeholder="Пароль">
+                                <small id="emailHelp" class="form-text text-muted"></small>
+                            </div>
+                            <div class="form-group w-50 mx-auto text-center">
+                                <button type="submit" class="btn btn-primary w-50 mt-4" id="addResource">Добавить ресурс</button>
+                            </div>
                         </form>
                     `;
+            
+            //Custom events
+            document.querySelector('#addResource').addEventListener('click', e => {
+                e.preventDefault();
+                let name = document.querySelector('#name').value;
+                let url = document.querySelector('#url').value;
+                let login = document.querySelector('#login').value;
+                let password = document.querySelector('#password').value;
+                let request_data = { 
+                    name: name,
+                    url: url,
+                    login: login,
+                    password: password
+                }
+                console.log(request_data.name);
+                fetch("createResourceByJson", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "json/application;charset=utf-8"
+                    },
+                    body:JSON.stringify(request_data)
+                }).then(response => {
+                    if(response.status >= 200){
+                        console.log(response.json());
+                    }
+                })
+            })
+
+            
         }else if(id === "index"){
             active_id = id;
             content.innerHTML = `
@@ -127,6 +158,28 @@ function changeContent(id){
                     </c:forEach>
             </div>
             `;
+        }else if(id === "loginForm"){
+            active_id = id;
+            content.innerHTML = `
+                <form action="login" method="POST">
+                    <h4 class="w-100 text-center ">Введите логин и пароль</h4>
+                    <div class="form-group w-50 mx-auto">    
+                        <label for="login">Логин</label>
+                        <input type="text" class="form-control" id="login" name="login" aria-describedby="loginHelp" placeholder="Логин">
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group w-50 mx-auto">    
+                        <label for="password">Пароль</label>
+                        <input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp" placeholder="Пароль">
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group w-50 mx-auto text-center">
+                        <button type="submit" class="btn btn-primary w-50 mt-4">Войти</button>
+                            <small id="emailHelp" class="form-text text-muted">
+                            Нет логина? <a href="showFormAddUser">Зарегистрируйтесь</a>
+                            </small>
+                    </div>
+                </form>`;
         }
     }
 }

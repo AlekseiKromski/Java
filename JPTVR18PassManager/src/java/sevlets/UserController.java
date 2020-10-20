@@ -79,8 +79,6 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession session = request.getSession(false);
-        
         String path = request.getServletPath();
         switch (path) {
             case "/index":
@@ -92,6 +90,7 @@ public class UserController extends HttpServlet {
                         .forward(request, response);
                 break;
             case "/login":
+                
                 String login = request.getParameter("login");
                 String password = request.getParameter("password");
                 User user = userFacade.findByLogin(login);
@@ -107,7 +106,7 @@ public class UserController extends HttpServlet {
                     request.getRequestDispatcher("/showFormLogin")
                         .forward(request, response);
                 }
-                session = request.getSession(true);
+                HttpSession session = request.getSession(true);
                 session.setAttribute("user", user);
                 request.setAttribute("info", "Привет, "+user.getLogin());
                 request.setAttribute("user", user);
