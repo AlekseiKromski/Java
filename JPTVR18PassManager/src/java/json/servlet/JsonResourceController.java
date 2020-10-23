@@ -6,6 +6,7 @@
 package json.servlet;
 
 import entity.Resource;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -20,18 +21,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import session.ResourceFacade;
+import session.UserFacade;
+import utils.MakeHash;
 import utils.ResourceJsonBuilder;
 
 /**
  *
  * @author pupil
  */
-@WebServlet(name = "JsonResourceController", urlPatterns = {"/createResourceByJson"})
+@WebServlet(name = "JsonResourceController", urlPatterns = {"/createResourceByJson", "/createUserByJson"})
 public class JsonResourceController extends HttpServlet {
 
     @EJB
     private  ResourceFacade resourceFacade = new ResourceFacade();
     
+    @EJB
+    private  UserFacade userFacade = new UserFacade();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,7 +53,7 @@ public class JsonResourceController extends HttpServlet {
             String json = null;
             String path = request.getServletPath();
             switch(path){
-                case "/createresource":
+                case "/createResourceByJson":
                     JsonObject jb = jr.readObject();
                     String name = jb.getString("name");           
                     String url = jb.getString("url");
@@ -62,7 +67,25 @@ public class JsonResourceController extends HttpServlet {
                     this.resourceFacade.create(resource);
                     ResourceJsonBuilder resourceJsonBuilder = new ResourceJsonBuilder();
                     job.add("info", "Ресурс добавлен");
-                    job.add("data",resourceJsonBuilder.createJsonResource(resource) );
+                    json = job.build().toString();
+                    break;
+                case "/createUserByJson":
+                    jb = jr.readObject();
+                    login = jb.getString("login");
+                    password = jb.getString("password");
+                    if(login == null && password == null){
+                        job.add("info", "Заполните поля");
+                        json = job.build().toString();
+                    }
+                   
+                     MakeHash makeHash = new MakeHash();
+                    String salts = makeHash.createSalts();
+                    String encodingPassword = makeHash.createHash(password, salts);
+                    User user = new User(login,encodingPassword,salts);
+                    
+                    this.userFacade.create(user);
+                    resourceJsonBuilder = new ResourceJsonBuilder();
+                    job.add("info", "Ресурс добавлен");
                     json = job.build().toString();
                     break;
                     
