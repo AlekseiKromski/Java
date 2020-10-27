@@ -29,7 +29,7 @@ import utils.ResourceJsonBuilder;
  *
  * @author pupil
  */
-@WebServlet(name = "JsonResourceController", urlPatterns = {"/createResourceByJson", "/createUserByJson"})
+@WebServlet(name = "JsonResourceController", urlPatterns = {"/createResourceByJson", "/createUserByJson", "/loginInByJson"})
 public class JsonResourceController extends HttpServlet {
 
     @EJB
@@ -78,7 +78,7 @@ public class JsonResourceController extends HttpServlet {
                         json = job.build().toString();
                     }
                    
-                     MakeHash makeHash = new MakeHash();
+                    MakeHash makeHash = new MakeHash();
                     String salts = makeHash.createSalts();
                     String encodingPassword = makeHash.createHash(password, salts);
                     User user = new User(login,encodingPassword,salts);
@@ -87,6 +87,9 @@ public class JsonResourceController extends HttpServlet {
                     resourceJsonBuilder = new ResourceJsonBuilder();
                     job.add("info", "Ресурс добавлен");
                     json = job.build().toString();
+                    break;
+                case "/loginInByJson":
+                    
                     break;
                     
             }

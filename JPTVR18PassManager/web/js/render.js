@@ -127,7 +127,7 @@ class Render{
             }else if(id === "loginForm"){
                 global_variable.obj.active_id = id;
                 global_variable.obj.content.innerHTML = `
-                    <form action="login" method="POST">
+                    <form action="login" method="POST" id="loginIn">
                         <h4 class="w-100 text-center ">Введите логин и пароль</h4>
                         <div class="form-group w-50 mx-auto">    
                             <label for="login">Логин</label>
@@ -139,13 +139,23 @@ class Render{
                             <input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp" placeholder="Пароль">
                             <small id="emailHelp" class="form-text text-muted"></small>
                         </div>
-                        <div class="form-group w-50 mx-auto text-center">
-                            <button type="submit" class="btn btn-primary w-50 mt-4">Войти</button>
-                                <small id="emailHelp" class="form-text text-muted">
-                                Нет логина? <a href="showFormAddUser">Зарегистрируйтесь</a>
-                                </small>
+                        <div class="form-group w-50 mx-auto">    
+                            <button type="submit" class="btn btn-primary w-50 mt-4" >Войти</button>
                         </div>
-                    </form>`;
+                    </form>
+                    
+                    <div class="form-group w-50 mx-auto text-center">
+                        <small id="emailHelp" class="form-text text-muted">
+                        Нет логина? <a href="showFormAddUser">Зарегистрируйтесь</a>
+                        </small>
+                    </div>
+                    `;
+                    
+
+                document.querySelector("#loginIn").addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    auth.auth.login(document.querySelector('#login'),document.querySelector('#password'));
+                });
             }else if(id === "showFormAddUser"){
                 global_variable.obj.active_id = id;
                 global_variable.obj.content.innerHTML = `
@@ -169,6 +179,7 @@ class Render{
                 //Custom events
                 document.querySelector('#addUser').addEventListener('click', e => {
                     e.preventDefault();
+                
                     let login = document.querySelector('#login').value;
                     let password = document.querySelector('#password').value;
                     let request_data = { 
@@ -199,5 +210,6 @@ class Render{
     
 }
 import global_variable from './global_variables.js';
+import auth from './auth_module.js';
 let obj = new Render();
 export default  {obj};
