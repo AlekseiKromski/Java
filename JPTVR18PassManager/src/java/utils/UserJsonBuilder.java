@@ -6,6 +6,7 @@
 package utils;
 
 import entity.Resource;
+import entity.User;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -14,16 +15,15 @@ import javax.json.JsonObjectBuilder;
  *
  * @author pupil
  */
-public class ResourceJsonBuilder {
-    public JsonObject createJsonResource(Resource r){
+public class UserJsonBuilder {
+  public JsonObject createJsonUser(User u, String session_id, String roleUser){
         JsonObjectBuilder job = Json.createObjectBuilder();
-        job.add("id", r.getId())
-            .add("name", r.getName())
-            .add("url", r.getUrl())
-            .add("login", r.getLogin())
-            .add("password", r.getPassword());
+        job.add("id", u.getId())
+            .add("login", u.getLogin())
+            .add("SESSION_ID", session_id)
+            .add("role", roleUser);
         return job.build();
 
     }
-    
+     
 }

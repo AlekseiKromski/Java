@@ -13,14 +13,21 @@ class Auth{
             if(response.status >= 200){
                 return response.json();
             }
-        }).then(data => {
+        }).then(response => {
             if(response != null && response != undefined){
                 global_variable.obj.info_block.innerHTML = `
                 <div class="alert alert-success" role="alert">
-                    OK
+                    Hello, ${response.data.login}
                 </div>
                 `;
-                sessionStorage.setItem('user', JSON.stringify(response.data.user))
+
+                sessionStorage.setItem('user', JSON.stringify(response.data));
+                document.querySelector("#menu").innerHTML += `
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Выйти <span class="sr-only">(current)</span></a>
+                    </li>
+                `
+                document.querySelector("#loginInSys").remove();
             }else{
                 global_variable.obj.info_block.innerHTML = `
                 <div class="alert alert-danger" role="alert">
@@ -32,6 +39,6 @@ class Auth{
         });
     }
 } 
-
+import global_variable from './global_variables.js';
 let auth = new Auth();
 export default {auth};

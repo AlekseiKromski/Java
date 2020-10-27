@@ -154,7 +154,7 @@ class Render{
 
                 document.querySelector("#loginIn").addEventListener('submit', (e) => {
                     e.preventDefault();
-                    auth.auth.login(document.querySelector('#login'),document.querySelector('#password'));
+                    auth.auth.login(document.querySelector('#login').value,document.querySelector('#password').value);
                 });
             }else if(id === "showFormAddUser"){
                 global_variable.obj.active_id = id;

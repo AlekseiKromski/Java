@@ -20,10 +20,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import session.ResourceFacade;
 import session.UserFacade;
+import session.UserRolesFacade;
 import utils.MakeHash;
 import utils.ResourceJsonBuilder;
+import utils.UserJsonBuilder;
 
 /**
  *
@@ -37,6 +40,9 @@ public class JsonResourceController extends HttpServlet {
     
     @EJB
     private  UserFacade userFacade = new UserFacade();
+    
+    @EJB
+    private UserRolesFacade userRolesFacade = new UserRolesFacade();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -82,14 +88,35 @@ public class JsonResourceController extends HttpServlet {
                     String salts = makeHash.createSalts();
                     String encodingPassword = makeHash.createHash(password, salts);
                     User user = new User(login,encodingPassword,salts);
-                    
                     this.userFacade.create(user);
-                    resourceJsonBuilder = new ResourceJsonBuilder();
                     job.add("info", "Ресурс добавлен");
                     json = job.build().toString();
                     break;
                 case "/loginInByJson":
+                    jb = jr.readObject();
+                    login = jb.getString("login");
+                    password = jb.getString("login");
+                    user = userFacade.findByLogin(login);
                     
+                    if(user == null){
+                        job.add("info", "Данного пользователя нет");
+                        json = job.build().toString();
+                    }
+                    MakeHash mh = new MakeHash();
+                    String encriptPassword = mh.createHash(password,user.getSalts());
+                    if(!encriptPassword.equals(user.getPassword())){
+                        job.add("info", "Нет такого логина или пароля");
+                        json = job.build().toString();
+                    }
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("user", user);
+                    
+                    String session_id = session.getId();
+                    String role_user = this.userRolesFacade.getTopRoleName(user);
+                    UserJsonBuilder ujb = new UserJsonBuilder();
+                    job.add("info", "Вы были авторезированы");
+                    job.add("data", ujb.createJsonUser(user, session_id, role_user));
+                    json = job.build().toString();
                     break;
                     
             }
