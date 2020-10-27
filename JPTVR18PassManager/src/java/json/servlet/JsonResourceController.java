@@ -116,7 +116,7 @@ public class JsonResourceController extends HttpServlet {
                     UserJsonBuilder ujb = new UserJsonBuilder();
                     job.add("info", "Вы были авторезированы");
                     job.add("data", ujb.createJsonUser(user, session_id, role_user));
-                    json = job.build().toString();
+                            json = job.build().toString();
                     break;
                     
             }

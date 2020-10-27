@@ -28,6 +28,9 @@ class Auth{
                     </li>
                 `
                 document.querySelector("#loginInSys").remove();
+                global_variable.obj.node_list = document.querySelectorAll(".nav-link");
+                render.obj.re_render();
+                
             }else{
                 global_variable.obj.info_block.innerHTML = `
                 <div class="alert alert-danger" role="alert">
@@ -40,5 +43,6 @@ class Auth{
     }
 } 
 import global_variable from './global_variables.js';
+import render from './render.js';
 let auth = new Auth();
 export default {auth};

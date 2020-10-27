@@ -1,5 +1,23 @@
 
 class Render{
+    re_render(){
+        for(let i = 0; i < global_variable.obj.node_list.length; i++){
+            global_variable.obj.node_list[i].addEventListener("click", (e) => {
+                e.preventDefault();
+                
+                //Delete old active
+                global_variable.obj.active_link.classList.remove("active");
+                
+                //Set new class to element
+                global_variable.obj.node_list[i].parentNode.classList.add("active");
+                
+                //Save new element with active class
+                global_variable.obj.active_link = global_variable.obj.node_list[i].parentNode;
+        
+                this.changeContent(global_variable.obj.node_list[i].id);
+            }); 
+        }
+    }
     changeContent(id){
         if(id !== global_variable.obj.active_id){
             if(id === "showFormAddResource"){

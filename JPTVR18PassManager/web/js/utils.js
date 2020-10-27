@@ -15,21 +15,7 @@ for(let i = 0; i < global_variable.obj.node_list.length; i++){
     }
 }
 
-for(let i = 0; i < global_variable.obj.node_list.length; i++){
-    global_variable.obj.node_list[i].addEventListener("click", (e) => {
-        e.preventDefault();
-        
-        //Delete old active
-        global_variable.obj.active_link.classList.remove("active");
-        
-        //Set new class to element
-        global_variable.obj.node_list[i].parentNode.classList.add("active");
-        
-        //Save new element with active class
-        global_variable.obj.active_link = global_variable.obj.node_list[i].parentNode;
+render.obj.re_render();
 
-        console.log(global_variable.obj.node_list[i]);
-        render.obj.changeContent(global_variable.obj.node_list[i].id);
-    }); 
-}
+
 
