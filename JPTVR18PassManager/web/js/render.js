@@ -1,6 +1,7 @@
 
 class Render{
     re_render(){
+
         for(let i = 0; i < global_variable.obj.node_list.length; i++){
             global_variable.obj.node_list[i].addEventListener("click", (e) => {
                 e.preventDefault();

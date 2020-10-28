@@ -23,14 +23,7 @@ class Auth{
                 `;
 
                 sessionStorage.setItem('user', JSON.stringify(response.data));
-                document.querySelector("#menu").innerHTML += `
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Выйти <span class="sr-only">(current)</span></a>
-                    </li>
-                `
-                document.querySelector("#loginInSys").remove();
-                global_variable.obj.node_list = document.querySelectorAll(".nav-link");
-                render.obj.re_render();
+                menu_module.obj.changeMenuIfLogin(response.data.role);
                 
             }else{
                 global_variable.obj.info_block.innerHTML = `
@@ -45,5 +38,6 @@ class Auth{
 } 
 import global_variable from './global_variables.js';
 import render from './render.js';
+import menu_module from './menu_module.js';
 let auth = new Auth();
 export default {auth};
