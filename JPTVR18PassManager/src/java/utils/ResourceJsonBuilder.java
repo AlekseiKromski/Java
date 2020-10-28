@@ -23,7 +23,6 @@ public class ResourceJsonBuilder {
             .add("login", r.getLogin())
             .add("password", r.getPassword());
         return job.build();
-
     }
     
 }

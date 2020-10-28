@@ -6,7 +6,9 @@
 package session;
 
 import entity.Resource;
+import entity.User;
 import entity.UserResources;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,4 +38,5 @@ public class UserResourcesFacade extends AbstractFacade<UserResources> {
                 .setParameter("resource", deleteResource)
                 .executeUpdate();
     }
+
 }

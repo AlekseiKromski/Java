@@ -33,7 +33,6 @@ class menu{
     }
     changeMenuIfLogin(role){
         if(role == "ADMIN"){
-            console.log(menu_list);
             this.menu_list[0].show = true;
             this.menu_list[1].show = true;
             this.menu_list[2].show = true;
@@ -51,8 +50,7 @@ class menu{
             }
         })
         global_variable.obj.node_list = document.querySelectorAll(".nav-link")
-        render.obj.re_render();
-        console.log(global_variable.obj.node_list);
+        render.obj.re_render(); 
     }
 }
 import render from './render.js';

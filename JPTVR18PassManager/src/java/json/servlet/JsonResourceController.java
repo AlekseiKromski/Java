@@ -7,11 +7,15 @@ package json.servlet;
 
 import entity.Resource;
 import entity.User;
+import entity.UserResources;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
@@ -23,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import session.ResourceFacade;
 import session.UserFacade;
+import session.UserResourcesFacade;
 import session.UserRolesFacade;
 import utils.MakeHash;
 import utils.ResourceJsonBuilder;
@@ -32,7 +37,7 @@ import utils.UserJsonBuilder;
  *
  * @author pupil
  */
-@WebServlet(name = "JsonResourceController", urlPatterns = {"/createResourceByJson", "/createUserByJson", "/loginInByJson"})
+@WebServlet(name = "JsonResourceController", urlPatterns = {"/createResourceByJson", "/createUserByJson", "/loginInByJson", "/getUserListResourcesByJson"})
 public class JsonResourceController extends HttpServlet {
 
     @EJB
@@ -43,6 +48,9 @@ public class JsonResourceController extends HttpServlet {
     
     @EJB
     private UserRolesFacade userRolesFacade = new UserRolesFacade();
+    
+    @EJB
+    private UserResourcesFacade userResourcesFacade = new UserResourcesFacade();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -56,29 +64,38 @@ public class JsonResourceController extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             JsonReader jr = Json.createReader(request.getReader());
             JsonObjectBuilder job = Json.createObjectBuilder();
+            JsonArrayBuilder jab = Json.createArrayBuilder();
             String json = null;
             String path = request.getServletPath();
             switch(path){
                 case "/createResourceByJson":
                     JsonObject jb = jr.readObject();
-                    String name = jb.getString("name");           
-                    String url = jb.getString("url");
-                    String login = jb.getString("login");
-                    String password = jb.getString("password");
-                    if(name == null){
-                        job.add("info", "Заполните поля");
+                    String user_session = jb.getString("user_session");
+                    HttpSession session = request.getSession(false);
+                    String session_id = session.getId();
+                    if(user_session.equals(session_id)){
+                        String name = jb.getString("name");           
+                        String url = jb.getString("url");
+                        String login = jb.getString("login");
+                        String password = jb.getString("password");
+                        Resource resource = new Resource(name, url, login, password);
+                        this.resourceFacade.create(resource);
+                        User current_user = (User) session.getAttribute("user");
+                        UserResources ur = new UserResources(current_user, resource, new Date());
+                        this.userResourcesFacade.create(ur);
+                        ResourceJsonBuilder resourceJsonBuilder = new ResourceJsonBuilder();
+                        job.add("info", "Ресурс добавлен");
+                        json = job.build().toString();
+                    }else{
+                        job.add("info", "Ресурс не добавлен");
                         json = job.build().toString();
                     }
-                    Resource resource = new Resource(name, url, login, password);
-                    this.resourceFacade.create(resource);
-                    ResourceJsonBuilder resourceJsonBuilder = new ResourceJsonBuilder();
-                    job.add("info", "Ресурс добавлен");
-                    json = job.build().toString();
+                    
                     break;
                 case "/createUserByJson":
                     jb = jr.readObject();
-                    login = jb.getString("login");
-                    password = jb.getString("password");
+                    String login = jb.getString("login");
+                    String password = jb.getString("password");
                     if(login == null && password == null){
                         job.add("info", "Заполните поля");
                         json = job.build().toString();
@@ -110,10 +127,10 @@ public class JsonResourceController extends HttpServlet {
                             job.add("auth", false);
                             json = job.build().toString();
                         }else{
-                            HttpSession session = request.getSession(true);
+                            session = request.getSession(true);
                             session.setAttribute("user", user);
 
-                            String session_id = session.getId();
+                            session_id = session.getId();
                             String role_user = this.userRolesFacade.getTopRoleName(user);
                             UserJsonBuilder ujb = new UserJsonBuilder();
                             job.add("info", "Вы были авторезированы");
@@ -123,8 +140,30 @@ public class JsonResourceController extends HttpServlet {
                         }
                        
                     }
+                    break;
+                   
+                case "/getUserListResourcesByJson":
+                    jb = jr.readObject();
+                    user_session = jb.getString("user_session");
+                    session = request.getSession(false);
+                    
+                    if(session.getId().equals(user_session)){
+                        user = (User) session.getAttribute("user");
+                        List<Resource> list_resources = this.resourceFacade.findByUser(user);
+                        ResourceJsonBuilder rjb = new ResourceJsonBuilder();
+                        for (Resource r : list_resources) {
+                            JsonObject json_for_jab = rjb.createJsonResource(r);
+                            jab.add(json_for_jab);
+                        }
+                        job.add("resources", jab.build().toString());
+                        json = job.build().toString();
+                    }else{
+                        job.add("info", "Неверный пользователь");
+                        json = job.build().toString();
+                    }
                     
                     break;
+                    
                     
             }
             if(!"".equals(json)){

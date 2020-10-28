@@ -14,13 +14,16 @@ class Auth{
                 return response.json();
             }
         }).then(response => {
-            console.log(response.info);
             if(response.auth && response != null && response != undefined){
                 global_variable.obj.info_block.innerHTML = `
                 <div class="alert alert-success" role="alert">
                     Hello, ${response.data.login}
                 </div>
                 `;
+
+                setTimeout(e => {
+                    global_variable.obj.info_block.innerHTML = ''
+                }, 2000)
 
                 sessionStorage.setItem('user', JSON.stringify(response.data));
                 menu_module.obj.changeMenuIfLogin(response.data.role);
