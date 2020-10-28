@@ -174,6 +174,12 @@ class Render{
                     e.preventDefault();
                     auth.auth.login(document.querySelector('#login').value,document.querySelector('#password').value);
                 });
+                document.querySelector("#loginIn button").addEventListener('keydown', (e) => {
+                    e.preventDefault();
+                    if (e.isComposing || e.keyCode === 13) {
+                        auth.auth.login(document.querySelector('#login').value,document.querySelector('#password').value);
+                    }
+                });
             }else if(id === "showFormAddUser"){
                 global_variable.obj.active_id = id;
                 global_variable.obj.content.innerHTML = `

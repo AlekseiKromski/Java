@@ -14,7 +14,8 @@ class Auth{
                 return response.json();
             }
         }).then(response => {
-            if(response != null && response != undefined){
+            console.log(response.info);
+            if(response.auth && response != null && response != undefined){
                 global_variable.obj.info_block.innerHTML = `
                 <div class="alert alert-success" role="alert">
                     Hello, ${response.data.login}
@@ -34,7 +35,7 @@ class Auth{
             }else{
                 global_variable.obj.info_block.innerHTML = `
                 <div class="alert alert-danger" role="alert">
-                    ${data.info}
+                    ${response.info}
                 </div>
                 `;
             }

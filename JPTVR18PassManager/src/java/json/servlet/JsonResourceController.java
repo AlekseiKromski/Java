@@ -95,28 +95,35 @@ public class JsonResourceController extends HttpServlet {
                 case "/loginInByJson":
                     jb = jr.readObject();
                     login = jb.getString("login");
-                    password = jb.getString("login");
+                    password = jb.getString("password");
                     user = userFacade.findByLogin(login);
                     
                     if(user == null){
                         job.add("info", "Данного пользователя нет");
+                        job.add("auth", false);
                         json = job.build().toString();
-                    }
-                    MakeHash mh = new MakeHash();
-                    String encriptPassword = mh.createHash(password,user.getSalts());
-                    if(!encriptPassword.equals(user.getPassword())){
-                        job.add("info", "Нет такого логина или пароля");
-                        json = job.build().toString();
-                    }
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("user", user);
-                    
-                    String session_id = session.getId();
-                    String role_user = this.userRolesFacade.getTopRoleName(user);
-                    UserJsonBuilder ujb = new UserJsonBuilder();
-                    job.add("info", "Вы были авторезированы");
-                    job.add("data", ujb.createJsonUser(user, session_id, role_user));
+                    }else{
+                        MakeHash mh = new MakeHash();
+                        String encriptPassword = mh.createHash(password, user.getSalts());
+                        if(!encriptPassword.equals(user.getPassword())){
+                            job.add("info", "Нет такого логина или пароля");
+                            job.add("auth", false);
                             json = job.build().toString();
+                        }else{
+                            HttpSession session = request.getSession(true);
+                            session.setAttribute("user", user);
+
+                            String session_id = session.getId();
+                            String role_user = this.userRolesFacade.getTopRoleName(user);
+                            UserJsonBuilder ujb = new UserJsonBuilder();
+                            job.add("info", "Вы были авторезированы");
+                            job.add("auth", true);
+                            job.add("data", ujb.createJsonUser(user, session_id, role_user));
+                            json = job.build().toString();   
+                        }
+                       
+                    }
+                    
                     break;
                     
             }

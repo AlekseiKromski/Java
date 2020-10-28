@@ -49,7 +49,7 @@ public class UserController extends HttpServlet {
         if(countRoles > 0) return;
         MakeHash mh = new MakeHash();
         String salts = mh.createSalts();
-        String password = mh.createHash("123123", salts);
+        String password = mh.createHash("admin", salts);
         User admin = new User("admin", password, salts);
         userFacade.create(admin);
         UserRoles userRoles = new UserRoles();
