@@ -5,34 +5,21 @@
  */
 package helloworld;
 
-
-
-
-
 /**
  *
  * @author yanikarp
  */
 public class HelloWorld {
 
-    //Приметивы 
-    byte b = 0; //1 byte(256) -128 to 138
-    short s = 0; //2 byte(~65000) -32 to 32
-    int i = 0; //4 byte(2**31) 
-    long l = 0; //8 byte(2**63)
-    float f = (float) 12.33; //4 byte Приводим double к значению float
-    double d = 123.123; //8 byte
-    boolean bool = true;
-    char c = '4'; //Char испльзует '', а не ""
-    
-    
-    /**
-     * @param args the command line arguments
-     */
+    /*
+    * Созданный объект на основе класса, я вляется ссылочным типом данных
+    * */
+
+    com.test.person.Person person = new com.test.person.Person();
+
     public static void main(String[] args) {
-        HelloWorld hw = new HelloWorld();
-        com.test.person.Person p = new com.test.person.Person();
-        
+        ExampleClass ec = new ExampleClass();
     }
+
     
 }
