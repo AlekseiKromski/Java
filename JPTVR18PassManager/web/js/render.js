@@ -258,6 +258,38 @@ class Render{
                         `;
                     });
                 })
+            }else if(id === "logOut"){
+                global_variable.obj.active_id = id;
+                const user = sessionStorage.getItem("user");
+                if(user){
+                    let request_data = { 
+                        user_session: JSON.parse(user).SESSION_ID
+                    }
+                    fetch("logoutByJson", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "json/application;charset=utf-8"
+                        },
+                        body:JSON.stringify(request_data)
+                    }).then(response => {
+                        if(response.status >= 200){
+                            return response.json();
+                        }
+                    }).then(data => {
+                        sessionStorage.removeItem("user");
+                        global_variable.obj.info_block.innerHTML = `
+                        <div class="alert alert-success" role="alert">
+                            ${data.info}
+                        </div>
+                        `;
+                        if(data.success_operation){
+                            menu_module.obj.changeMenuIfLogin("NONE");
+                            this.changeContent("index")
+                        }
+                    });
+                }else{
+                    console.log('user not found');
+                }
             }
         }
     }
@@ -265,6 +297,7 @@ class Render{
 }
 import global_variable from './global_variables.js';
 import auth from './auth_module.js';
+import menu_module from './menu_module.js';
 
 let obj = new Render();
 export default  {obj};

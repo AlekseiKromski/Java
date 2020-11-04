@@ -40,7 +40,7 @@ import utils.UserJsonBuilder;
  *
  * @author pupil
  */
-@WebServlet(name = "JsonResourceController", urlPatterns = {"/createResourceByJson", "/createUserByJson", "/loginInByJson", "/getUserListResourcesByJson"})
+@WebServlet(name = "JsonResourceController", urlPatterns = {"/createResourceByJson", "/createUserByJson", "/loginInByJson", "/getUserListResourcesByJson", "/logoutByJson"})
 public class JsonResourceController extends HttpServlet {
 
     @EJB
@@ -177,7 +177,22 @@ public class JsonResourceController extends HttpServlet {
                     }
                     
                     break;
+                case "/logoutByJson":
+                    jb = jr.readObject();
+                    user_session = jb.getString("user_session");
+                    session = request.getSession(false);
                     
+                    if(session.getId().equals(user_session)){
+                        session.invalidate();
+                        job.add("success_operation", "Пользователь вышел");
+                        job.add("info", "Пользователь вышел");
+                        json = job.build().toString();
+                    }else{
+                        job.add("info", "Неверный пользователь");
+                        json = job.build().toString();
+                    }
+                    
+                    break;    
                     
             }
             if(!"".equals(json)){

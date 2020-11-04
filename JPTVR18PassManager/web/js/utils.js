@@ -20,6 +20,8 @@ for(let i = 0; i < global_variable.obj.node_list.length; i++){
 if(sessionStorage.getItem('user')){
     const user = JSON.parse(sessionStorage.getItem('user'));
     menu_module.obj.changeMenuIfLogin(user.role);
+}else{
+    menu_module.obj.changeMenuIfLogin("NONE");
 }
 render.obj.re_render();
 

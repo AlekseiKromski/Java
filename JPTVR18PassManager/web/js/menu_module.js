@@ -44,6 +44,12 @@ class menu{
             this.menu_list[2].show = true;
             this.menu_list[3].show = false;
             this.menu_list[4].show = true;
+        }else{
+            this.menu_list[0].show = false;
+            this.menu_list[1].show = false;
+            this.menu_list[2].show = false;
+            this.menu_list[3].show = true;
+            this.menu_list[4].show = false;
         }
         document.querySelector("#menu").innerHTML = '';
         this.menu_list.forEach(e => {
