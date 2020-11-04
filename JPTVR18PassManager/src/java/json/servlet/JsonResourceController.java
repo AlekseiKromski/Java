@@ -6,8 +6,10 @@
 package json.servlet;
 
 import entity.Resource;
+import entity.Role;
 import entity.User;
 import entity.UserResources;
+import entity.UserRoles;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import session.ResourceFacade;
+import session.RoleFacade;
 import session.UserFacade;
 import session.UserResourcesFacade;
 import session.UserRolesFacade;
@@ -51,6 +54,11 @@ public class JsonResourceController extends HttpServlet {
     
     @EJB
     private UserResourcesFacade userResourcesFacade = new UserResourcesFacade();
+    
+    @EJB
+    private  RoleFacade roleFacade = new RoleFacade();
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -106,6 +114,12 @@ public class JsonResourceController extends HttpServlet {
                     String encodingPassword = makeHash.createHash(password, salts);
                     User user = new User(login,encodingPassword,salts);
                     this.userFacade.create(user);
+                    
+                    //create a role by new user
+                    Role role = this.roleFacade.getRole("USER");
+                    UserRoles ur= new UserRoles(user, role);
+                    this.userRolesFacade.create(ur);
+                    
                     job.add("info", "Ресурс добавлен");
                     json = job.build().toString();
                     break;

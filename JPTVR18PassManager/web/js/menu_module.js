@@ -38,6 +38,12 @@ class menu{
             this.menu_list[2].show = true;
             this.menu_list[3].show = false;
             this.menu_list[4].show = true;
+        }else if(role == "USER"){
+            this.menu_list[0].show = true;
+            this.menu_list[1].show = false;
+            this.menu_list[2].show = true;
+            this.menu_list[3].show = false;
+            this.menu_list[4].show = true;
         }
         document.querySelector("#menu").innerHTML = '';
         this.menu_list.forEach(e => {
@@ -55,5 +61,6 @@ class menu{
 }
 import render from './render.js';
 import global_variable from './global_variables.js';
+
 let obj = new menu(menu_list);
 export default {obj};

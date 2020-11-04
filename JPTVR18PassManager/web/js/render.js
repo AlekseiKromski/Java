@@ -265,5 +265,6 @@ class Render{
 }
 import global_variable from './global_variables.js';
 import auth from './auth_module.js';
+
 let obj = new Render();
 export default  {obj};

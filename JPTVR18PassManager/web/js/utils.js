@@ -1,5 +1,6 @@
 import global_variable from './global_variables.js';
 import render from './render.js';
+import menu_module from './menu_module.js';
 
 //Add listener to home link 
 global_variable.obj.home_link.addEventListener("click", e => {
@@ -15,6 +16,11 @@ for(let i = 0; i < global_variable.obj.node_list.length; i++){
     }
 }
 
+//ChekIfLogin [need move to auth_module]
+if(sessionStorage.getItem('user')){
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    menu_module.obj.changeMenuIfLogin(user.role);
+}
 render.obj.re_render();
 
 
