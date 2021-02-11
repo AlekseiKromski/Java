@@ -6,7 +6,7 @@ package interfaces;
 * Методы интерфейсов по дефолту абстрактыне
 * Для расширений интерфейсов в классе, надо использовать implements
 * Можно инмлементировать много интерфейсов и обязательно НАДО ПЕРЕОПРЕДЕЛИТЬ ВСЕ МЕТОДЫ
-* Все переменные интерфейся по дефолту [ public static final ]
+* Все поля и методы интерфейся по дефолту [ public static final ]
 *
 * */
 abstract public interface FirstInterface extends OtherInterface{
@@ -25,6 +25,6 @@ class Exmaple implements FirstInterface{
     }
 
     public void method(){
-
+        FirstInterface.
     }
 }
